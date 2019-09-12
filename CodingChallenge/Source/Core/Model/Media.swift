@@ -1,5 +1,5 @@
 //
-//  Track.swift
+//  Media.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 12/09/2019.
@@ -9,24 +9,24 @@
 import Foundation
 import UIKit
 
-struct Track {
-    let id: Int?
-    let name: String?
-    let price: Decimal?
+struct Media {
+    let trackId: Int?
+    let trackName: String?
+    let trackPrice: Double?
     let currency: String
     let primaryGenre: String
     let genres: [String]?
     let shortDescription: String?
     let longDescription: String?
     let artwork60: FetchableValue<UIImage>
-    let artwork100: FetchableValue<UIImage>
+    var artwork100: FetchableValue<UIImage>
 }
 
-extension Track: Decodable {
+extension Media: Decodable {
     enum CodingKeys: String, CodingKey {
-        case id = "trackId"
-        case name = "trackName"
-        case price = "trackPrice"
+        case trackId
+        case trackName
+        case trackPrice
         case currency
         case primaryGenre = "primaryGenreName"
         case genres

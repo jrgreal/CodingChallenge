@@ -13,15 +13,9 @@ struct SearchResult {
     let tracks: [Track]
 }
 
-extension SearchResult {
+extension SearchResult: Decodable {
     enum CodingKeys: String, CodingKey {
         case count = "resultCount"
         case tracks = "results"
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        count = try container.value(forKey: .count)
-        tracks = try container.value(forKey: .tracks)
     }
 }

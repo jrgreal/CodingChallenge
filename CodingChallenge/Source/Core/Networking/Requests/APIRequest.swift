@@ -66,5 +66,5 @@ extension ListRequest: NetworkRequest {
 }
 
 struct APIEndpoint {
-    static let searchTrackURL = "https://itunes.apple.com/search?term=star&amp;country=au&amp;media=movie&amp;all"
+    static let searchTrackURL = URL(string: "https://itunes.apple.com/search?term=star&amp;country=au&amp;media=movie&amp;all")!
 }

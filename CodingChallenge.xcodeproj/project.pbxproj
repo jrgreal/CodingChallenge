@@ -14,6 +14,8 @@
 		871E93712329C04D0064B88E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 871E936F2329C04D0064B88E /* LaunchScreen.storyboard */; };
 		871E937C2329C04D0064B88E /* CodingChallengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E937B2329C04D0064B88E /* CodingChallengeTests.swift */; };
 		871E93872329C04D0064B88E /* CodingChallengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871E93862329C04D0064B88E /* CodingChallengeUITests.swift */; };
+		872A1C35232A45C500ADAA9B /* CachingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C34232A45C500ADAA9B /* CachingController.swift */; };
+		872A1C37232A462200ADAA9B /* FileSystemCacheController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C36232A462200ADAA9B /* FileSystemCacheController.swift */; };
 		8739F4BD232A3B6A00546AF8 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739F4BC232A3B6A00546AF8 /* Track.swift */; };
 		8739F4C1232A3C2C00546AF8 /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739F4C0232A3C2C00546AF8 /* ModelTypes.swift */; };
 		8739F4C3232A3C5C00546AF8 /* Decoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739F4C2232A3C5C00546AF8 /* Decoding.swift */; };
@@ -51,6 +53,8 @@
 		871E93822329C04D0064B88E /* CodingChallengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CodingChallengeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		871E93862329C04D0064B88E /* CodingChallengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodingChallengeUITests.swift; sourceTree = "<group>"; };
 		871E93882329C04D0064B88E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		872A1C34232A45C500ADAA9B /* CachingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachingController.swift; sourceTree = "<group>"; };
+		872A1C36232A462200ADAA9B /* FileSystemCacheController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileSystemCacheController.swift; sourceTree = "<group>"; };
 		8739F4BC232A3B6A00546AF8 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		8739F4C0232A3C2C00546AF8 /* ModelTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
 		8739F4C2232A3C5C00546AF8 /* Decoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoding.swift; sourceTree = "<group>"; };
@@ -134,6 +138,22 @@
 			path = CodingChallengeUITests;
 			sourceTree = "<group>";
 		};
+		872A1C30232A451000ADAA9B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		872A1C33232A45AC00ADAA9B /* Caching */ = {
+			isa = PBXGroup;
+			children = (
+				872A1C34232A45C500ADAA9B /* CachingController.swift */,
+				872A1C36232A462200ADAA9B /* FileSystemCacheController.swift */,
+			);
+			path = Caching;
+			sourceTree = "<group>";
+		};
 		87498AB32329C089008633E0 /* Source */ = {
 			isa = PBXGroup;
 			children = (
@@ -146,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				87498AB52329C0A1008633E0 /* Model */,
+				872A1C33232A45AC00ADAA9B /* Caching */,
+				872A1C30232A451000ADAA9B /* Networking */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -295,6 +317,8 @@
 				8739F4C3232A3C5C00546AF8 /* Decoding.swift in Sources */,
 				871E93692329C0460064B88E /* ViewController.swift in Sources */,
 				871E93672329C0460064B88E /* AppDelegate.swift in Sources */,
+				872A1C35232A45C500ADAA9B /* CachingController.swift in Sources */,
+				872A1C37232A462200ADAA9B /* FileSystemCacheController.swift in Sources */,
 				8739F4C1232A3C2C00546AF8 /* ModelTypes.swift in Sources */,
 				8739F4C5232A429200546AF8 /* SearchResult.swift in Sources */,
 				8739F4BD232A3B6A00546AF8 /* Track.swift in Sources */,

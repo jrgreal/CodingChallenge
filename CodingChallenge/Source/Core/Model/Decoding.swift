@@ -13,3 +13,11 @@ extension KeyedDecodingContainer {
         return try decode(T.self, forKey: key)
     }
 }
+
+extension URL {
+    init?(template: String) {
+        let regex = "\\{.*\\}"
+        let cleanedString = template.replacingOccurrences(of: regex, with: "", options: .regularExpression)
+        self.init(string: cleanedString)
+    }
+}

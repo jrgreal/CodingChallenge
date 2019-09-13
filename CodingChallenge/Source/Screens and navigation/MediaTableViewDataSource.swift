@@ -9,37 +9,42 @@
 import UIKit
 
 class MediaTableViewDataSource: NSObject {
-    let dataOrganizer: ArrayDataSourceOrganizer<Media>
-    var viewModelCache: [IndexPath: MediaCell.ViewModel] = [:]
+    let dataOrganizer: DataOrganizer
     
     init(media: [Media]) {
-        dataOrganizer = ArrayDataSourceOrganizer(items: media)
+        dataOrganizer = DataOrganizer(items: media)
         super.init()
     }
 }
 
-// MARK: ArrayTableViewDataSource
-extension MediaTableViewDataSource: ArrayTableViewDataSource {
-    func viewModel(for value: Media) -> MediaCell.ViewModel {
-        return MediaCell.ViewModel(media: value)
-    }
-    
-    func configure(cell: MediaCell, with viewModel: MediaCell.ViewModel) {
-        cell.viewModel = viewModel
-    }
-}
-
-// MARK: UITableViewDataSource
+// MARK: - UITableViewDataSource
 extension MediaTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rowsCount
+        return dataOrganizer.rowsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return cell(from: tableView, for: indexPath)
+        let cell: MediaCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.viewModel = MediaCell.ViewModel(media: dataOrganizer[indexPath])
+        return cell
     }
 }
 
+// MARK: - DataOrganizer
+extension MediaTableViewDataSource {
+    struct DataOrganizer {
+        var items: [Media]
+        
+        var rowsCount: Int {
+            return items.count
+        }
+        
+        subscript(indexPath: IndexPath) -> Media {
+            get { return items[indexPath.row] }
+            set { items[indexPath.row] = newValue }
+        }
+    }
+}
 
 // MARK: - MediaCell.ViewModel
 extension MediaCell.ViewModel {

@@ -22,17 +22,6 @@ class MediaCell: UITableViewCell {
             priceLabel.text = viewModel.price
         }
     }
-    
-//    private func fetchProductImage(from url: URL) {
-//        productImageView.image = nil
-//        let productImageRequest = ImageRequest(url: url)
-//        productImageRequest.fetch { [weak self] (result) in
-//            switch result {
-//            case .success(let image): self?.productImageView.image = image
-//            case .failure: self?.productImageView.image = nil
-//            }
-//        }
-//    }
 }
 
 // MARK: - ViewModel

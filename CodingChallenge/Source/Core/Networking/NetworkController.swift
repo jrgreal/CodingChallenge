@@ -9,6 +9,10 @@
 import Foundation
 import UIKit
 
+protocol Networked: class {
+    var networkController: NetworkController? { get set }
+}
+
 class NetworkController {
     private let cachingController: CachingController
     private var session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)

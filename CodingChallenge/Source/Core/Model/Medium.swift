@@ -18,7 +18,7 @@ struct Medium {
     let genres: [String]?
     let shortDescription: String?
     let longDescription: String?
-    let artwork60: FetchableValue<UIImage>
+    var artwork60: FetchableValue<UIImage>
     var artwork100: FetchableValue<UIImage>
 }
 

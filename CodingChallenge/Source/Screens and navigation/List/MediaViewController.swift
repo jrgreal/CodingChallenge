@@ -37,16 +37,14 @@ extension MediaViewController: UITableViewDelegate {
     }
     
     func fetchImageForRow(at indexPath: IndexPath) {
-        guard let fetchableImage = dataSource?.item(at: indexPath).artwork100 else {
+        guard let fetchableImage = dataSource?.fetchableImage(at: indexPath) else {
             return
         }
-        
         if fetchableImage.fetchedValue != nil {
             return
         }
-        
-        print(fetchableImage)
         networkController?.fetchImage(for: fetchableImage.url, withCompletion: { [weak self] result in
+            print("fetching...")
             if let image = try? result.get() {
                 self?.update(image, at: indexPath)
             }
@@ -54,52 +52,10 @@ extension MediaViewController: UITableViewDelegate {
     }
     
     func update(_ image: UIImage, at indexPath: IndexPath) {
-        guard var item = dataSource?.item(at: indexPath) else {
-            return
-        }
-        item.update(image: image)
-        dataSource?.update(item, at: indexPath)
-        
-//        tableView.dataSource = dataSource
-//        tableView.reloadRows(at: [indexPath], with: .fade)
-        
+        dataSource?.update(image, at: indexPath)
         if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
             (tableView.cellForRow(at: indexPath) as? MediumCell)?.update(image)
         }
     }
-//
-//    func refreshImage() {
-////        setUpDataSource()
-//        tableView.dataSource = dataSource
-//        tableView.reloadRows(at: <#T##[IndexPath]#>, with: <#T##UITableView.RowAnimation#>)
-//        if let avatarIndexPath = dataSource?.indexPath(for: Section.SummaryRow.avatar) {
-//            tableView.reloadRows(at: [avatarIndexPath], with: .fade)
-//        }
-//    }
 }
-
-// MARK: - ImagedCell
-protocol ImagedCell {
-    var imageView: UIImageView { get }
-}
-
-extension ImagedCell {
-    func update(_ image: UIImage) {
-        UIView.transition(with: imageView, duration: 0.2, options: .transitionCrossDissolve, animations: {
-            self.imageView.image = image
-        }, completion: nil)
-    }
-}
-
-// MARK: - Medium
-extension Medium {
-    var image: FetchableValue<UIImage> {
-        return artwork100
-    }
-
-    mutating func update(image: UIImage) {
-        artwork100.update(newValue: image)
-    }
-}
-
 

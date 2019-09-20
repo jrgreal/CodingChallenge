@@ -20,12 +20,16 @@ class MediaTableViewDataSource: NSObject {
         return dataOrganizer[indexPath]
     }
     
-    func image(at indexPath: IndexPath) -> UIImage? {
-        return dataOrganizer[indexPath].artwork100.fetchedValue
+    func fetchableImage(at indexPath: IndexPath) -> FetchableValue<UIImage> {
+        return dataOrganizer[indexPath].artwork100
     }
     
     func update(_ item: Medium, at indexPath: IndexPath) {
         dataOrganizer[indexPath] = item
+    }
+    
+    func update(_ image: UIImage, at indexPath: IndexPath) {
+        dataOrganizer[indexPath].artwork100.update(newValue: image)
     }
 }
 
@@ -38,6 +42,7 @@ extension MediaTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MediumCell = tableView.dequeueReusableCell(for: indexPath)
         cell.viewModel = MediumCell.ViewModel(media: dataOrganizer[indexPath])
+        print(cell.viewModel.artwork.size)
         return cell
     }
 }

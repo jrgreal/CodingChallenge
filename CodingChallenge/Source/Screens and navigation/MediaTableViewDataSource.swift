@@ -9,11 +9,23 @@
 import UIKit
 
 class MediaTableViewDataSource: NSObject {
-    let dataOrganizer: DataOrganizer
+    var dataOrganizer: DataOrganizer
     
     init(media: [Media]) {
         dataOrganizer = DataOrganizer(items: media)
         super.init()
+    }
+    
+    func item(at indexPath: IndexPath) -> Media {
+        return dataOrganizer[indexPath]
+    }
+    
+    func image(at indexPath: IndexPath) -> UIImage? {
+        return dataOrganizer[indexPath].artwork100.fetchedValue
+    }
+    
+    func update(_ item: Media, at indexPath: IndexPath) {
+        dataOrganizer[indexPath] = item
     }
 }
 
@@ -49,7 +61,7 @@ extension MediaTableViewDataSource {
 // MARK: - MediaCell.ViewModel
 extension MediaCell.ViewModel {
     init(media: Media) {
-        artwork = #imageLiteral(resourceName: "placeholder")
+        artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
         name = media.trackName ?? "No track name"
         genre = media.primaryGenre
         price = "\(media.trackPrice ?? 0) \(media.currency)"

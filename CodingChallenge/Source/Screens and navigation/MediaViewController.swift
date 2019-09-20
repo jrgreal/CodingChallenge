@@ -25,88 +25,57 @@ extension MediaViewController {
             let dataSource = MediaTableViewDataSource(media: media)
             self?.dataSource = dataSource
             self?.tableView.dataSource = dataSource
+            self?.tableView.delegate = self
             self?.tableView.reloadData()
         }
     }
 }
 
-//extension MediaViewController: RowImageFetching {
-//    func fetchableImage(at indexPath: IndexPath) -> FetchableValue<UIImage>? {
-//        return dataSource?.item(at: indexPath).image
-//    }
-//
-//    func update(_ image: UIImage, at indexPath: IndexPath) {
-//        guard var item = dataSource?.item(at: indexPath) else {
-//            return
-//        }
-//        item.update(image: image)
-//        dataSource?.update(item, at: indexPath)
-//        if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
-//            (tableView.cellForRow(at: indexPath) as? ImagedCell)?.update(image)
-//        }
-//    }
-//}
-//
-//extension MediaViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        fetchImageForRow(at: indexPath)
-//    }
-//}
-
-protocol RowImageFetching: Networked {
-    func fetchableImage(at indexPath: IndexPath) -> FetchableValue<UIImage>?
-    func update(_ image: UIImage, at indexPath: IndexPath)
-}
-
-extension RowImageFetching {
+extension MediaViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        fetchImageForRow(at: indexPath)
+    }
+    
     func fetchImageForRow(at indexPath: IndexPath) {
-        guard let rowImage = fetchableImage(at: indexPath) else {
+        guard let fetchableImage = dataSource?.item(at: indexPath).artwork100 else {
             return
         }
-        if rowImage.fetchedValue != nil {
+        
+        if fetchableImage.fetchedValue != nil {
             return
         }
-        networkController?.fetchImage(for: rowImage.url, withCompletion: { [weak self] result in
+        
+        print(fetchableImage)
+        networkController?.fetchImage(for: fetchableImage.url, withCompletion: { [weak self] result in
             if let image = try? result.get() {
                 self?.update(image, at: indexPath)
             }
         })
     }
-}
-
-// MARK: - ImageFetching
-protocol ImageFetching: Networked {
-    associatedtype ModelType: ImagedItem
-    var item: FetchableValue<ModelType>? { get set }
-    func refreshImage()
-}
-
-
-protocol ImagedItem {
-    var image: FetchableValue<UIImage> { get }
-    mutating func update(image: UIImage)
-}
-
-extension ImageFetching {
-    func fetchImage() {
-        guard let url = item?.fetchedValue?.image.url else {
-            return
-        }
-        networkController?.fetchImage(for: url) { [weak self] result in
-            if let image = try? result.get() {
-                self?.update(image: image)
-            }
-        }
-    }
     
-    func update(image: UIImage) {
-        guard var item = self.item?.fetchedValue else {
+    func update(_ image: UIImage, at indexPath: IndexPath) {
+        guard var item = dataSource?.item(at: indexPath) else {
             return
         }
         item.update(image: image)
-        self.item?.update(newValue: item)
-        refreshImage()
+        dataSource?.update(item, at: indexPath)
+        
+//        tableView.dataSource = dataSource
+//        tableView.reloadRows(at: [indexPath], with: .fade)
+        
+        if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
+            (tableView.cellForRow(at: indexPath) as? MediaCell)?.update(image)
+        }
     }
+//
+//    func refreshImage() {
+////        setUpDataSource()
+//        tableView.dataSource = dataSource
+//        tableView.reloadRows(at: <#T##[IndexPath]#>, with: <#T##UITableView.RowAnimation#>)
+//        if let avatarIndexPath = dataSource?.indexPath(for: Section.SummaryRow.avatar) {
+//            tableView.reloadRows(at: [avatarIndexPath], with: .fade)
+//        }
+//    }
 }
 
 // MARK: - ImagedCell
@@ -123,11 +92,11 @@ extension ImagedCell {
 }
 
 // MARK: - Media
-extension Media: ImagedItem {
+extension Media {
     var image: FetchableValue<UIImage> {
         return artwork100
     }
-    
+
     mutating func update(image: UIImage) {
         artwork100.update(newValue: image)
     }

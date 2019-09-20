@@ -24,8 +24,13 @@ class MediaCell: UITableViewCell {
     }
 }
 
-// MARK: - ViewModel
+extension MediaCell: ImagedCell {
+    override var imageView: UIImageView {
+        return artworkImageView
+    }
+}
 
+// MARK: - ViewModel
 extension MediaCell {
     struct ViewModel {
         var artwork = UIImage()

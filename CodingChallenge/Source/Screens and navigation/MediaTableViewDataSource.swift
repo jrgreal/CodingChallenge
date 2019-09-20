@@ -11,12 +11,12 @@ import UIKit
 class MediaTableViewDataSource: NSObject {
     var dataOrganizer: DataOrganizer
     
-    init(media: [Media]) {
+    init(media: [Medium]) {
         dataOrganizer = DataOrganizer(items: media)
         super.init()
     }
     
-    func item(at indexPath: IndexPath) -> Media {
+    func item(at indexPath: IndexPath) -> Medium {
         return dataOrganizer[indexPath]
     }
     
@@ -24,7 +24,7 @@ class MediaTableViewDataSource: NSObject {
         return dataOrganizer[indexPath].artwork100.fetchedValue
     }
     
-    func update(_ item: Media, at indexPath: IndexPath) {
+    func update(_ item: Medium, at indexPath: IndexPath) {
         dataOrganizer[indexPath] = item
     }
 }
@@ -36,8 +36,8 @@ extension MediaTableViewDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MediaCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.viewModel = MediaCell.ViewModel(media: dataOrganizer[indexPath])
+        let cell: MediumCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.viewModel = MediumCell.ViewModel(media: dataOrganizer[indexPath])
         return cell
     }
 }
@@ -45,22 +45,22 @@ extension MediaTableViewDataSource: UITableViewDataSource {
 // MARK: - DataOrganizer
 extension MediaTableViewDataSource {
     struct DataOrganizer {
-        var items: [Media]
+        var items: [Medium]
         
         var rowsCount: Int {
             return items.count
         }
         
-        subscript(indexPath: IndexPath) -> Media {
+        subscript(indexPath: IndexPath) -> Medium {
             get { return items[indexPath.row] }
             set { items[indexPath.row] = newValue }
         }
     }
 }
 
-// MARK: - MediaCell.ViewModel
-extension MediaCell.ViewModel {
-    init(media: Media) {
+// MARK: - MediumCell.ViewModel
+extension MediumCell.ViewModel {
+    init(media: Medium) {
         artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
         name = media.trackName ?? "No track name"
         genre = media.primaryGenre

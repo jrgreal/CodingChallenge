@@ -1,5 +1,5 @@
 //
-//  MediaCell.swift
+//  MediumCell.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 12/09/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MediaCell: UITableViewCell {
+class MediumCell: UITableViewCell {
     @IBOutlet private weak var artworkImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var genreLabel: UILabel!
@@ -24,14 +24,14 @@ class MediaCell: UITableViewCell {
     }
 }
 
-extension MediaCell: ImagedCell {
+extension MediumCell: ImagedCell {
     override var imageView: UIImageView {
         return artworkImageView
     }
 }
 
 // MARK: - ViewModel
-extension MediaCell {
+extension MediumCell {
     struct ViewModel {
         var artwork = UIImage()
         var name = ""

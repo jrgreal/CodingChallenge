@@ -23,8 +23,8 @@
 		872A1C42232A49D300ADAA9B /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C41232A49D300ADAA9B /* NetworkError.swift */; };
 		872A1C44232A49FE00ADAA9B /* NetworkError.strings in Resources */ = {isa = PBXBuildFile; fileRef = 872A1C43232A49FE00ADAA9B /* NetworkError.strings */; };
 		872A1C48232A4A8B00ADAA9B /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C47232A4A8B00ADAA9B /* APIRequest.swift */; };
-		872A1C4D232A887800ADAA9B /* MediaCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4C232A887800ADAA9B /* MediaCell.swift */; };
-		872A1C4F232A888B00ADAA9B /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4E232A888B00ADAA9B /* Media.swift */; };
+		872A1C4D232A887800ADAA9B /* MediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4C232A887800ADAA9B /* MediumCell.swift */; };
+		872A1C4F232A888B00ADAA9B /* Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4E232A888B00ADAA9B /* Medium.swift */; };
 		872A1C51232A8AE700ADAA9B /* MediaTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C50232A8AE700ADAA9B /* MediaTableViewDataSource.swift */; };
 		872A1C55232A925000ADAA9B /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C54232A925000ADAA9B /* MediaViewController.swift */; };
 		8739F4BD232A3B6A00546AF8 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739F4BC232A3B6A00546AF8 /* Track.swift */; };
@@ -74,8 +74,8 @@
 		872A1C41232A49D300ADAA9B /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		872A1C43232A49FE00ADAA9B /* NetworkError.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = NetworkError.strings; sourceTree = "<group>"; };
 		872A1C47232A4A8B00ADAA9B /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
-		872A1C4C232A887800ADAA9B /* MediaCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaCell.swift; sourceTree = "<group>"; };
-		872A1C4E232A888B00ADAA9B /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		872A1C4C232A887800ADAA9B /* MediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCell.swift; sourceTree = "<group>"; };
+		872A1C4E232A888B00ADAA9B /* Medium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medium.swift; sourceTree = "<group>"; };
 		872A1C50232A8AE700ADAA9B /* MediaTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewDataSource.swift; sourceTree = "<group>"; };
 		872A1C54232A925000ADAA9B /* MediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
 		8739F4BC232A3B6A00546AF8 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
@@ -196,7 +196,7 @@
 		872A1C4B232A881100ADAA9B /* Screens and navigation */ = {
 			isa = PBXGroup;
 			children = (
-				872A1C4C232A887800ADAA9B /* MediaCell.swift */,
+				872A1C4C232A887800ADAA9B /* MediumCell.swift */,
 				872A1C50232A8AE700ADAA9B /* MediaTableViewDataSource.swift */,
 				872A1C54232A925000ADAA9B /* MediaViewController.swift */,
 			);
@@ -226,7 +226,7 @@
 		87498AB52329C0A1008633E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				872A1C4E232A888B00ADAA9B /* Media.swift */,
+				872A1C4E232A888B00ADAA9B /* Medium.swift */,
 				8739F4BC232A3B6A00546AF8 /* Track.swift */,
 				8739F4C4232A429200546AF8 /* SearchResult.swift */,
 				8739F4C0232A3C2C00546AF8 /* ModelTypes.swift */,
@@ -381,10 +381,10 @@
 				871E93672329C0460064B88E /* AppDelegate.swift in Sources */,
 				872A1C35232A45C500ADAA9B /* CachingController.swift in Sources */,
 				872A1C37232A462200ADAA9B /* FileSystemCacheController.swift in Sources */,
-				872A1C4F232A888B00ADAA9B /* Media.swift in Sources */,
+				872A1C4F232A888B00ADAA9B /* Medium.swift in Sources */,
 				8739F4C1232A3C2C00546AF8 /* ModelTypes.swift in Sources */,
 				872A1C51232A8AE700ADAA9B /* MediaTableViewDataSource.swift in Sources */,
-				872A1C4D232A887800ADAA9B /* MediaCell.swift in Sources */,
+				872A1C4D232A887800ADAA9B /* MediumCell.swift in Sources */,
 				879073D6232BC17700D7AD1D /* UITableView.swift in Sources */,
 				872A1C3B232A48CC00ADAA9B /* Result.swift in Sources */,
 				8739F4C5232A429200546AF8 /* SearchResult.swift in Sources */,

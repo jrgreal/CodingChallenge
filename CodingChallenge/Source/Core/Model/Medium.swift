@@ -1,5 +1,5 @@
 //
-//  Media.swift
+//  Medium.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 12/09/2019.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-struct Media {
+struct Medium {
     let trackId: Int?
     let trackName: String?
     let trackPrice: Double?
@@ -22,7 +22,7 @@ struct Media {
     var artwork100: FetchableValue<UIImage>
 }
 
-extension Media: Decodable {
+extension Medium: Decodable {
     enum CodingKeys: String, CodingKey {
         case trackId
         case trackName

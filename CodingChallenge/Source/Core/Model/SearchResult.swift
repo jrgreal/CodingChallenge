@@ -10,7 +10,7 @@ import Foundation
 
 struct SearchResult {
     let count: Int
-    let media: [Media]
+    let media: [Medium]
 }
 
 extension SearchResult: Decodable {

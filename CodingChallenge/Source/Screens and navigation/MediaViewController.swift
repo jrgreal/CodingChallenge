@@ -64,7 +64,7 @@ extension MediaViewController: UITableViewDelegate {
 //        tableView.reloadRows(at: [indexPath], with: .fade)
         
         if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
-            (tableView.cellForRow(at: indexPath) as? MediaCell)?.update(image)
+            (tableView.cellForRow(at: indexPath) as? MediumCell)?.update(image)
         }
     }
 //
@@ -91,8 +91,8 @@ extension ImagedCell {
     }
 }
 
-// MARK: - Media
-extension Media {
+// MARK: - Medium
+extension Medium {
     var image: FetchableValue<UIImage> {
         return artwork100
     }

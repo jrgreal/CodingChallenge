@@ -29,6 +29,15 @@ extension MediaViewController {
             self?.tableView.reloadData()
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? MediumViewController {
+            if let indexPath = tableView.indexPathForSelectedRow,
+                let item = dataSource?.item(at: indexPath) {
+                destination.medium = item
+            }
+        }
+    }
 }
 
 extension MediaViewController: UITableViewDelegate {
@@ -36,6 +45,12 @@ extension MediaViewController: UITableViewDelegate {
         fetchImageForRow(at: indexPath)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+extension MediaViewController {
     func fetchImageForRow(at indexPath: IndexPath) {
         guard let fetchableImage = dataSource?.fetchableImage(at: indexPath) else {
             return

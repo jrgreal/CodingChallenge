@@ -48,9 +48,7 @@ extension MediumTableViewDataSource {
         init(medium: Medium) {
             var rows: [MediumViewController.Row] = []
             rows.append(.summary)
-            if let _ = medium.longDescription {
-                rows.append(.description)
-            }
+            rows.append(.description)
             self.rows = rows
         }
 
@@ -84,6 +82,6 @@ extension SummaryCell: MediumConfigurable {
 
 extension DescriptionCell: MediumConfigurable {
     func configure(with medium: Medium) {
-        longDescription = medium.longDescription ?? ""
+        longDescription = medium.longDescription ?? "No information available."
     }
 }

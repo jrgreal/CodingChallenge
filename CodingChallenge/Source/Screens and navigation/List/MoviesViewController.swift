@@ -35,10 +35,10 @@ extension MoviesViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? MediumViewController {
+        if let destination = segue.destination as? MovieDetailsViewController {
             if let indexPath = tableView.indexPathForSelectedRow,
                 let item = dataSource?.item(at: indexPath) {
-                destination.medium = item
+                destination.movie = item
             }
         }
     }

@@ -1,5 +1,5 @@
 //
-//  MediumTableViewDataSource.swift
+//  MovieDetailsTableViewDataSource.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 20/09/2019.
@@ -8,26 +8,26 @@
 
 import UIKit
 
-class MediumTableViewDataSource: NSObject {
+class MovieDetailsTableViewDataSource: NSObject {
     private let organizer: DataOrganizer
-    private var medium: Movie
+    private var movie: Movie
     
-    init(medium: Movie) {
-        self.medium = medium
-        organizer = DataOrganizer(medium: medium)
+    init(movie: Movie) {
+        self.movie = movie
+        organizer = DataOrganizer(movie: movie)
         super.init()
     }
     
     func fetchableImage() -> FetchableValue<UIImage> {
-        return medium.artwork100
+        return movie.artwork100
     }
     
     func update(_ image: UIImage) {
-        medium.artwork100.update(newValue: image)
+        movie.artwork100.update(newValue: image)
     }
 }
 
-extension MediumTableViewDataSource: UITableViewDataSource {
+extension MovieDetailsTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return organizer.rowsCount
     }
@@ -35,8 +35,8 @@ extension MediumTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = organizer.row(at: indexPath.row)
         let cell = tableView.dequeueReusableCell(with: row.cellType, for: indexPath)
-        if let configurableCell = cell as? MediumConfigurable {
-            configurableCell.configure(with: medium)
+        if let configurableCell = cell as? MovieConfigurable {
+            configurableCell.configure(with: movie)
         }
         return cell
     }
@@ -44,22 +44,22 @@ extension MediumTableViewDataSource: UITableViewDataSource {
 
 
 // MARK: - DataOrganizer
-extension MediumTableViewDataSource {
+extension MovieDetailsTableViewDataSource {
     struct DataOrganizer {
-        private let rows: [MediumViewController.Row]
+        private let rows: [MovieDetailsViewController.Row]
         
         var rowsCount: Int {
             return rows.count
         }
         
-        init(medium: Movie) {
-            var rows: [MediumViewController.Row] = []
+        init(movie: Movie) {
+            var rows: [MovieDetailsViewController.Row] = []
             rows.append(.summary)
             rows.append(.description)
             self.rows = rows
         }
 
-        func row(at index: Int) -> MediumViewController.Row {
+        func row(at index: Int) -> MovieDetailsViewController.Row {
             return rows[index]
         }
     }
@@ -69,26 +69,26 @@ extension MediumTableViewDataSource {
 extension SummaryCell.ViewModel {
     init(media: Movie) {
         artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
-        name = media.trackName ?? "No track name"
+        name = media.trackName
         genre = media.primaryGenre
         price = "\(media.trackPrice ?? 0) \(media.currency)"
     }
 }
 
-//MARK: - MediumConfigurable
-protocol MediumConfigurable {
+//MARK: - MovieConfigurable
+protocol MovieConfigurable {
     func configure(with medium: Movie)
 }
 
 
-extension SummaryCell: MediumConfigurable {
+extension SummaryCell: MovieConfigurable {
     func configure(with medium: Movie) {
         viewModel = ViewModel(media: medium)
     }
 }
 
-extension DescriptionCell: MediumConfigurable {
+extension DescriptionCell: MovieConfigurable {
     func configure(with medium: Movie) {
-        longDescription = medium.longDescription ?? "No information available."
+        longDescription = medium.longDescription
     }
 }

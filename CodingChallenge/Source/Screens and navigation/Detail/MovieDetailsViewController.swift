@@ -1,5 +1,5 @@
 //
-//  MediumViewController.swift
+//  MovieDetailsViewController.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 20/09/2019.
@@ -8,65 +8,65 @@
 
 import UIKit
 
-class MediumViewController: UIViewController {
+class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
-    private var dataSource: MediumTableViewDataSource?
+    private var dataSource: MovieDetailsTableViewDataSource?
     var networkController: NetworkController? = NetworkController()
     
-    var medium: Movie?
+    var movie: Movie?
 }
 
-extension MediumViewController {
+extension MovieDetailsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
-        guard let medium = medium else {
+        guard let movie = movie else {
             return
         }
-        setUpDataSource(with: medium)
+        setUpDataSource(with: movie)
     }
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
-        guard let medium = medium else {
+        guard let movie = movie else {
             return
         }
-        if let data = try? JSONEncoder().encode(medium) {
-            coder.encode(data, forKey: CodingKey.medium)
+        if let data = try? JSONEncoder().encode(movie) {
+            coder.encode(data, forKey: CodingKey.movie)
             return
         }
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
-        if let data = coder.decodeObject(forKey: CodingKey.medium) as? Data, let medium = try? JSONDecoder().decode(Movie.self, from: data) {
-            self.medium = medium
+        if let data = coder.decodeObject(forKey: CodingKey.movie) as? Data, let movie = try? JSONDecoder().decode(Movie.self, from: data) {
+            self.movie = movie
             return
         }
     }
     
     override func applicationFinishedRestoringState() {
-        guard let medium = medium else {
+        guard let movie = movie else {
             return
         }
-        setUpDataSource(with: medium)
+        setUpDataSource(with: movie)
     }
     
-    func setUpDataSource(with medium: Movie) {
-        self.medium = medium
-        dataSource = MediumTableViewDataSource(medium: medium)
+    func setUpDataSource(with movie: Movie) {
+        self.movie = movie
+        dataSource = MovieDetailsTableViewDataSource(movie: movie)
         tableView.dataSource = dataSource
         tableView.reloadData()
     }
 }
 
-extension MediumViewController: UITableViewDelegate {
+extension MovieDetailsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         fetchImageForRow(at: indexPath)
     }
 }
 
-extension MediumViewController {
+extension MovieDetailsViewController {
     func fetchImageForRow(at indexPath: IndexPath) {
         guard let fetchableImage = dataSource?.fetchableImage() else {
             return
@@ -83,7 +83,7 @@ extension MediumViewController {
     }
 }
 
-extension MediumViewController {
+extension MovieDetailsViewController {
     enum Row {
         case summary
         case description
@@ -97,8 +97,8 @@ extension MediumViewController {
     }
 }
 
-extension MediumViewController {
+extension MovieDetailsViewController {
     struct CodingKey {
-        static let medium = "medium"
+        static let movie = "movie"
     }
 }

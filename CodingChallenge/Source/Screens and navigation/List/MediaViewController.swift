@@ -12,21 +12,18 @@ class MediaViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     var networkController: NetworkController? = NetworkController(cachingController: CachingController())
     private var dataSource: MediaTableViewDataSource?
+    var media: [Medium] = []
 }
 
 extension MediaViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
         networkController?.fetchValue(for: APIEndpoint.searchTrackURL) { [weak self] (result: Result<SearchResult>) in
-            print(result)
             guard let media = try? result.get().media else {
                 return
             }
-            let dataSource = MediaTableViewDataSource(media: media)
-            self?.dataSource = dataSource
-            self?.tableView.dataSource = dataSource
-            self?.tableView.delegate = self
-            self?.tableView.reloadData()
+            self?.setUpDataSource(with: media)
         }
     }
     
@@ -38,15 +35,42 @@ extension MediaViewController {
             }
         }
     }
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+        if let data = try? JSONEncoder().encode(media) {
+            coder.encode(data, forKey: CodingKey.media)
+            return
+        }
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        if let data = coder.decodeObject(forKey: CodingKey.media) as? Data, let media = try? JSONDecoder().decode([Medium].self, from: data) {
+            self.media = media
+            return
+        }
+    }
+    
+    override func applicationFinishedRestoringState() {
+        let media = self.media
+        guard !media.isEmpty else {
+            return
+        }
+        setUpDataSource(with: media)
+    }
+    
+    func setUpDataSource(with media: [Medium]) {
+        self.media = media
+        let dataSource = MediaTableViewDataSource(media: media)
+        self.dataSource = dataSource
+        tableView.dataSource = dataSource
+        self.tableView.reloadData()
+    }
 }
 
 extension MediaViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         fetchImageForRow(at: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
     }
 }
 
@@ -59,7 +83,6 @@ extension MediaViewController {
             return
         }
         networkController?.fetchImage(for: fetchableImage.url, withCompletion: { [weak self] result in
-            print("fetching...")
             if let image = try? result.get() {
                 self?.update(image, at: indexPath)
             }
@@ -74,3 +97,8 @@ extension MediaViewController {
     }
 }
 
+extension MediaViewController {
+    struct CodingKey {
+        static let media = "media"
+    }
+}

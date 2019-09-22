@@ -40,7 +40,7 @@ struct FetchableValue<T> {
     }
 }
 
-extension FetchableValue: Decodable {
+extension FetchableValue: Codable {
     init(from decoder: Decoder) throws {
         let template = try decoder.singleValueContainer().decode(String.self)
         guard let url = URL(template: template) else {
@@ -48,5 +48,10 @@ extension FetchableValue: Decodable {
         }
         self.url = url
         value = .notFetched
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.singleValueContainer()
+        try container.encode(url.absoluteString)
     }
 }

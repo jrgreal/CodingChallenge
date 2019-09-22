@@ -22,7 +22,7 @@ protocol Caching {
 }
 
 class CachingController {
-    var cacheController: Caching = FileSystemCacheController()
+    var cacheController: Caching = FileSystemPersistenceController()
     
     func fetchValue<V: Decodable>(for url: URL) -> CachedValue<V>? {
         let storedValue: StoredValue<V>? = cacheController.fetchValue(for: url)

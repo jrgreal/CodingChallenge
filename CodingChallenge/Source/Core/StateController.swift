@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
+class StateController {
+    var persistenceController: FileSystemPersistenceController?
+    var media: [Medium]?
+    var medium: Medium?
+    var lastVisitDate: Date?
+}

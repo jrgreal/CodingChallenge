@@ -10,7 +10,7 @@ import UIKit
 
 class MediumTableViewDataSource: NSObject {
     private let organizer: DataOrganizer
-    private let medium: Medium
+    private var medium: Medium
     
     init(medium: Medium) {
         self.medium = medium
@@ -18,6 +18,13 @@ class MediumTableViewDataSource: NSObject {
         super.init()
     }
     
+    func fetchableImage() -> FetchableValue<UIImage> {
+        return medium.artwork100
+    }
+    
+    func update(_ image: UIImage) {
+        medium.artwork100.update(newValue: image)
+    }
 }
 
 extension MediumTableViewDataSource: UITableViewDataSource {

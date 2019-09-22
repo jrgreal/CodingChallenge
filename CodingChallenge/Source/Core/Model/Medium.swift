@@ -22,7 +22,7 @@ struct Medium {
     var artwork100: FetchableValue<UIImage>
 }
 
-extension Medium: Decodable {
+extension Medium: Codable {
     enum CodingKeys: String, CodingKey {
         case trackId
         case trackName

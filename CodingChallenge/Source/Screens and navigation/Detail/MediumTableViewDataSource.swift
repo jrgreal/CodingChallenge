@@ -65,7 +65,7 @@ extension MediumTableViewDataSource {
     }
 }
 
-// MARK: - MediumCell.ViewModel
+// MARK: - MovieCell.ViewModel
 extension SummaryCell.ViewModel {
     init(media: Movie) {
         artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")

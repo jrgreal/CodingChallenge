@@ -1,5 +1,5 @@
 //
-//  MediaTableViewDataSource.swift
+//  MoviesTableViewDataSource.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 12/09/2019.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MediaTableViewDataSource: NSObject {
+class MoviesTableViewDataSource: NSObject {
     var dataOrganizer: DataOrganizer
     
-    init(media: [Movie]) {
-        dataOrganizer = DataOrganizer(items: media)
+    init(movies: [Movie]) {
+        dataOrganizer = DataOrganizer(items: movies)
         super.init()
     }
     
@@ -34,21 +34,21 @@ class MediaTableViewDataSource: NSObject {
 }
 
 // MARK: - UITableViewDataSource
-extension MediaTableViewDataSource: UITableViewDataSource {
+extension MoviesTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataOrganizer.rowsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MediumCell = tableView.dequeueReusableCell(for: indexPath)
-        cell.viewModel = MediumCell.ViewModel(media: dataOrganizer[indexPath])
+        let cell: MovieCell = tableView.dequeueReusableCell(for: indexPath)
+        cell.viewModel = MovieCell.ViewModel(movie: dataOrganizer[indexPath])
         print(cell.viewModel.artwork.size)
         return cell
     }
 }
 
 // MARK: - DataOrganizer
-extension MediaTableViewDataSource {
+extension MoviesTableViewDataSource {
     struct DataOrganizer {
         var items: [Movie]
         
@@ -63,12 +63,12 @@ extension MediaTableViewDataSource {
     }
 }
 
-// MARK: - MediumCell.ViewModel
-extension MediumCell.ViewModel {
-    init(media: Movie) {
-        artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
-        name = media.trackName ?? "No track name"
-        genre = media.primaryGenre
-        price = "\(media.trackPrice ?? 0) \(media.currency)"
+// MARK: - MovieCell.ViewModel
+extension MovieCell.ViewModel {
+    init(movie: Movie) {
+        artwork = movie.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
+        name = movie.trackName
+        genre = movie.primaryGenre
+        price = "\(movie.trackPrice ?? 0) \(movie.currency)"
     }
 }

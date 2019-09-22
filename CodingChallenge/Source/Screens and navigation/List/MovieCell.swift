@@ -1,5 +1,5 @@
 //
-//  MediumCell.swift
+//  MovieCell.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 12/09/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MediumCell: UITableViewCell {
+class MovieCell: UITableViewCell {
     @IBOutlet private weak var artworkImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var genreLabel: UILabel!
@@ -24,14 +24,14 @@ class MediumCell: UITableViewCell {
     }
 }
 
-extension MediumCell: ImagedCell {
+extension MovieCell: ImagedCell {
     override var imageView: UIImageView {
         return artworkImageView
     }
 }
 
 // MARK: - ViewModel
-extension MediumCell {
+extension MovieCell {
     struct ViewModel {
         var artwork = UIImage()
         var name = ""

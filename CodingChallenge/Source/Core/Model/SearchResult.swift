@@ -10,12 +10,12 @@ import Foundation
 
 struct SearchResult {
     let count: Int
-    let media: [Movie]
+    let results: [Movie]
 }
 
 extension SearchResult: Decodable {
     enum CodingKeys: String, CodingKey {
         case count = "resultCount"
-        case media = "results"
+        case results
     }
 }

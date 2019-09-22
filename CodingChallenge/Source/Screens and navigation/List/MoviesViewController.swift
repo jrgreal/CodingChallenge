@@ -1,5 +1,5 @@
 //
-//  MediaViewController.swift
+//  MoviesViewController.swift
 //  CodingChallenge
 //
 //  Created by Reginald on 12/09/2019.
@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MediaViewController: UIViewController {
+class MoviesViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     var networkController: NetworkController? = NetworkController()
-    private var dataSource: MediaTableViewDataSource?
-    var media: [Movie] = []
+    private var dataSource: MoviesTableViewDataSource?
+    var movies: [Movie] = []
     var lastVisitDate: Date? {
         didSet {
             if let dateText = lastVisitDate?.dateText {
@@ -22,15 +22,15 @@ class MediaViewController: UIViewController {
     }
 }
 
-extension MediaViewController {
+extension MoviesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
         networkController?.fetchValue(for: APIEndpoint.searchTrackURL) { [weak self] (result: Result<SearchResult>) in
-            guard let media = try? result.get().media else {
+            guard let movies = try? result.get().results else {
                 return
             }
-            self?.setUpDataSource(with: media)
+            self?.setUpDataSource(with: movies)
         }
     }
     
@@ -46,10 +46,10 @@ extension MediaViewController {
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
         coder.encode(Date(), forKey: CodingKey.lastVisitDate)
-        guard let data = try? JSONEncoder().encode(media) else {
+        guard let data = try? JSONEncoder().encode(movies) else {
             return
         }
-        coder.encode(data, forKey: CodingKey.media)
+        coder.encode(data, forKey: CodingKey.movies)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
@@ -57,37 +57,35 @@ extension MediaViewController {
         let lastVisitDate = coder.decodeObject(forKey: CodingKey.lastVisitDate) as? Date
         self.lastVisitDate = lastVisitDate
         
-        guard let data = coder.decodeObject(forKey: CodingKey.media) as? Data,
-            let media = try? JSONDecoder().decode([Movie].self, from: data) else {
+        guard let data = coder.decodeObject(forKey: CodingKey.movies) as? Data,
+            let movies = try? JSONDecoder().decode([Movie].self, from: data) else {
             return
         }
-        self.media = media
+        self.movies = movies
     }
     
     override func applicationFinishedRestoringState() {
-        let media = self.media
-        guard !media.isEmpty else {
-            return
+       if !movies.isEmpty {
+             setUpDataSource(with: movies)
         }
-        setUpDataSource(with: media)
     }
     
-    func setUpDataSource(with media: [Movie]) {
-        self.media = media
-        let dataSource = MediaTableViewDataSource(media: media)
+    func setUpDataSource(with movies: [Movie]) {
+        self.movies = movies
+        let dataSource = MoviesTableViewDataSource(movies: movies)
         self.dataSource = dataSource
         tableView.dataSource = dataSource
         self.tableView.reloadData()
     }
 }
 
-extension MediaViewController: UITableViewDelegate {
+extension MoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         fetchImageForRow(at: indexPath)
     }
 }
 
-extension MediaViewController {
+extension MoviesViewController {
     func fetchImageForRow(at indexPath: IndexPath) {
         guard let fetchableImage = dataSource?.fetchableImage(at: indexPath) else {
             return
@@ -105,14 +103,14 @@ extension MediaViewController {
     func update(_ image: UIImage, at indexPath: IndexPath) {
         dataSource?.update(image, at: indexPath)
         if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
-            (tableView.cellForRow(at: indexPath) as? MediumCell)?.update(image)
+            (tableView.cellForRow(at: indexPath) as? MovieCell)?.update(image)
         }
     }
 }
 
-extension MediaViewController {
+extension MoviesViewController {
     struct CodingKey {
-        static let media = "media"
+        static let movies = "movies"
         static let lastVisitDate = "lastVisitDate"
     }
 }

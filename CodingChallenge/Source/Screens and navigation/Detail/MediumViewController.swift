@@ -38,8 +38,8 @@ extension MediumViewController {
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
         if let data = coder.decodeObject(forKey: CodingKey.medium) as? Data, let medium = try? JSONDecoder().decode(Medium.self, from: data) {
-            print(medium)
             self.medium = medium
             return
         }

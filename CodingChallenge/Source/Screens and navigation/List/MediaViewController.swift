@@ -45,14 +45,15 @@ extension MediaViewController {
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
+        coder.encode(Date(), forKey: CodingKey.lastVisitDate)
         guard let data = try? JSONEncoder().encode(media) else {
             return
         }
         coder.encode(data, forKey: CodingKey.media)
-        coder.encode(Date(), forKey: CodingKey.lastVisitDate)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
         let lastVisitDate = coder.decodeObject(forKey: CodingKey.lastVisitDate) as? Date
         self.lastVisitDate = lastVisitDate
         

@@ -13,6 +13,13 @@ class MediaViewController: UIViewController {
     var networkController: NetworkController? = NetworkController(cachingController: CachingController())
     private var dataSource: MediaTableViewDataSource?
     var media: [Medium] = []
+    var lastVisitDate: Date? {
+        didSet {
+            if let dateText = lastVisitDate?.dateText {
+                navigationItem.title = "Your last visit was on " + dateText
+            }
+        }
+    }
 }
 
 extension MediaViewController {
@@ -38,17 +45,22 @@ extension MediaViewController {
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
-        if let data = try? JSONEncoder().encode(media) {
-            coder.encode(data, forKey: CodingKey.media)
+        guard let data = try? JSONEncoder().encode(media) else {
             return
         }
+        coder.encode(data, forKey: CodingKey.media)
+        coder.encode(Date(), forKey: CodingKey.lastVisitDate)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
-        if let data = coder.decodeObject(forKey: CodingKey.media) as? Data, let media = try? JSONDecoder().decode([Medium].self, from: data) {
-            self.media = media
+        let lastVisitDate = coder.decodeObject(forKey: CodingKey.lastVisitDate) as? Date
+        self.lastVisitDate = lastVisitDate
+        
+        guard let data = coder.decodeObject(forKey: CodingKey.media) as? Data,
+            let media = try? JSONDecoder().decode([Medium].self, from: data) else {
             return
         }
+        self.media = media
     }
     
     override func applicationFinishedRestoringState() {
@@ -100,5 +112,6 @@ extension MediaViewController {
 extension MediaViewController {
     struct CodingKey {
         static let media = "media"
+        static let lastVisitDate = "lastVisitDate"
     }
 }

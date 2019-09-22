@@ -62,29 +62,29 @@
                                                             <rect key="frame" x="95" y="0.0" width="257.5" height="104"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZRm-Tg-lA6">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="257.5" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="257.5" height="35.5"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lZ2-pB-qbH">
-                                                                    <rect key="frame" x="0.0" y="48" width="257.5" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="39.5" width="257.5" height="17"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Genre" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P1u-pM-cz7">
-                                                                    <rect key="frame" x="0.0" y="52" width="257.5" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="60.5" width="257.5" height="0.0"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dgs-8J-DqV">
-                                                                    <rect key="frame" x="0.0" y="56" width="257.5" height="0.0"/>
+                                                                    <rect key="frame" x="0.0" y="64.5" width="257.5" height="0.0"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DcD-8j-r30">
-                                                                    <rect key="frame" x="0.0" y="60" width="257.5" height="44"/>
+                                                                    <rect key="frame" x="0.0" y="68.5" width="257.5" height="35.5"/>
                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 </view>
                                                             </subviews>
@@ -122,7 +122,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="y7M-uH-UaB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="D4J-Rx-WPh"/>
+                    <navigationItem key="navigationItem" id="D4J-Rx-WPh">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Oz0-qk-D6T"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="uXU-BY-aDP" id="Gcw-Mo-Kfm"/>
                     </connections>

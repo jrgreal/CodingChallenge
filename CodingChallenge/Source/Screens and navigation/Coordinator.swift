@@ -13,6 +13,6 @@ class Coordinator: NSObject {
 }
 extension Coordinator {
     struct Segues {
-        static let showMedium = "ShowMedium"
+        static let showMovie = "ShowMovie"
     }
 }

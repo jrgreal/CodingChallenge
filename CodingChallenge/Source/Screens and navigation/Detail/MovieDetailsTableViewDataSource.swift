@@ -67,28 +67,28 @@ extension MovieDetailsTableViewDataSource {
 
 // MARK: - MovieCell.ViewModel
 extension SummaryCell.ViewModel {
-    init(media: Movie) {
-        artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
-        name = media.trackName
-        genre = media.primaryGenre
-        price = "\(media.trackPrice ?? 0) \(media.currency)"
+    init(movie: Movie) {
+        artwork = movie.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
+        name = movie.trackName
+        genre = movie.primaryGenre
+        price = "\(movie.trackPrice ?? 0) \(movie.currency)"
     }
 }
 
 //MARK: - MovieConfigurable
 protocol MovieConfigurable {
-    func configure(with medium: Movie)
+    func configure(with movie: Movie)
 }
 
 
 extension SummaryCell: MovieConfigurable {
-    func configure(with medium: Movie) {
-        viewModel = ViewModel(media: medium)
+    func configure(with movie: Movie) {
+        viewModel = ViewModel(movie: movie)
     }
 }
 
 extension DescriptionCell: MovieConfigurable {
-    func configure(with medium: Movie) {
-        longDescription = medium.longDescription
+    func configure(with movie: Movie) {
+        longDescription = movie.longDescription
     }
 }

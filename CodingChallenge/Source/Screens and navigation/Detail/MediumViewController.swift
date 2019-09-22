@@ -13,7 +13,7 @@ class MediumViewController: UIViewController {
     private var dataSource: MediumTableViewDataSource?
     var networkController: NetworkController? = NetworkController()
     
-    var medium: Medium?
+    var medium: Movie?
 }
 
 extension MediumViewController {
@@ -39,7 +39,7 @@ extension MediumViewController {
     
     override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
-        if let data = coder.decodeObject(forKey: CodingKey.medium) as? Data, let medium = try? JSONDecoder().decode(Medium.self, from: data) {
+        if let data = coder.decodeObject(forKey: CodingKey.medium) as? Data, let medium = try? JSONDecoder().decode(Movie.self, from: data) {
             self.medium = medium
             return
         }
@@ -52,7 +52,7 @@ extension MediumViewController {
         setUpDataSource(with: medium)
     }
     
-    func setUpDataSource(with medium: Medium) {
+    func setUpDataSource(with medium: Movie) {
         self.medium = medium
         dataSource = MediumTableViewDataSource(medium: medium)
         tableView.dataSource = dataSource

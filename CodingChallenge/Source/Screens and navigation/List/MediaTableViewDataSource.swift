@@ -11,12 +11,12 @@ import UIKit
 class MediaTableViewDataSource: NSObject {
     var dataOrganizer: DataOrganizer
     
-    init(media: [Medium]) {
+    init(media: [Movie]) {
         dataOrganizer = DataOrganizer(items: media)
         super.init()
     }
     
-    func item(at indexPath: IndexPath) -> Medium {
+    func item(at indexPath: IndexPath) -> Movie {
         return dataOrganizer[indexPath]
     }
     
@@ -24,7 +24,7 @@ class MediaTableViewDataSource: NSObject {
         return dataOrganizer[indexPath].artwork100
     }
     
-    func update(_ item: Medium, at indexPath: IndexPath) {
+    func update(_ item: Movie, at indexPath: IndexPath) {
         dataOrganizer[indexPath] = item
     }
     
@@ -50,13 +50,13 @@ extension MediaTableViewDataSource: UITableViewDataSource {
 // MARK: - DataOrganizer
 extension MediaTableViewDataSource {
     struct DataOrganizer {
-        var items: [Medium]
+        var items: [Movie]
         
         var rowsCount: Int {
             return items.count
         }
         
-        subscript(indexPath: IndexPath) -> Medium {
+        subscript(indexPath: IndexPath) -> Movie {
             get { return items[indexPath.row] }
             set { items[indexPath.row] = newValue }
         }
@@ -65,7 +65,7 @@ extension MediaTableViewDataSource {
 
 // MARK: - MediumCell.ViewModel
 extension MediumCell.ViewModel {
-    init(media: Medium) {
+    init(media: Movie) {
         artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
         name = media.trackName ?? "No track name"
         genre = media.primaryGenre

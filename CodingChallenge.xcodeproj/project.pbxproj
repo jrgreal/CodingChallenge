@@ -21,7 +21,7 @@
 		872A1C44232A49FE00ADAA9B /* NetworkError.strings in Resources */ = {isa = PBXBuildFile; fileRef = 872A1C43232A49FE00ADAA9B /* NetworkError.strings */; };
 		872A1C48232A4A8B00ADAA9B /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C47232A4A8B00ADAA9B /* APIRequest.swift */; };
 		872A1C4D232A887800ADAA9B /* MediumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4C232A887800ADAA9B /* MediumCell.swift */; };
-		872A1C4F232A888B00ADAA9B /* Medium.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4E232A888B00ADAA9B /* Medium.swift */; };
+		872A1C4F232A888B00ADAA9B /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4E232A888B00ADAA9B /* Movie.swift */; };
 		872A1C51232A8AE700ADAA9B /* MediaTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C50232A8AE700ADAA9B /* MediaTableViewDataSource.swift */; };
 		872A1C55232A925000ADAA9B /* MediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C54232A925000ADAA9B /* MediaViewController.swift */; };
 		8739F4C1232A3C2C00546AF8 /* ModelTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739F4C0232A3C2C00546AF8 /* ModelTypes.swift */; };
@@ -75,7 +75,7 @@
 		872A1C43232A49FE00ADAA9B /* NetworkError.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = NetworkError.strings; sourceTree = "<group>"; };
 		872A1C47232A4A8B00ADAA9B /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 		872A1C4C232A887800ADAA9B /* MediumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediumCell.swift; sourceTree = "<group>"; };
-		872A1C4E232A888B00ADAA9B /* Medium.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Medium.swift; sourceTree = "<group>"; };
+		872A1C4E232A888B00ADAA9B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		872A1C50232A8AE700ADAA9B /* MediaTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTableViewDataSource.swift; sourceTree = "<group>"; };
 		872A1C54232A925000ADAA9B /* MediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaViewController.swift; sourceTree = "<group>"; };
 		8739F4C0232A3C2C00546AF8 /* ModelTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTypes.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		87498AB52329C0A1008633E0 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				872A1C4E232A888B00ADAA9B /* Medium.swift */,
+				872A1C4E232A888B00ADAA9B /* Movie.swift */,
 				8739F4C4232A429200546AF8 /* SearchResult.swift */,
 				8739F4C0232A3C2C00546AF8 /* ModelTypes.swift */,
 				8739F4C2232A3C5C00546AF8 /* Decoding.swift */,
@@ -400,7 +400,7 @@
 				87EEE9632335132600573FB9 /* MediumTableViewDataSource.swift in Sources */,
 				871E93672329C0460064B88E /* AppDelegate.swift in Sources */,
 				877D08572334D1A500A3E2DD /* MediumViewController.swift in Sources */,
-				872A1C4F232A888B00ADAA9B /* Medium.swift in Sources */,
+				872A1C4F232A888B00ADAA9B /* Movie.swift in Sources */,
 				87EEE95F23350CAC00573FB9 /* SummaryCell.swift in Sources */,
 				8739F4C1232A3C2C00546AF8 /* ModelTypes.swift in Sources */,
 				872A1C51232A8AE700ADAA9B /* MediaTableViewDataSource.swift in Sources */,

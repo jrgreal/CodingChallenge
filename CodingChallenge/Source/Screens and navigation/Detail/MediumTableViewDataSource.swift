@@ -10,9 +10,9 @@ import UIKit
 
 class MediumTableViewDataSource: NSObject {
     private let organizer: DataOrganizer
-    private var medium: Medium
+    private var medium: Movie
     
-    init(medium: Medium) {
+    init(medium: Movie) {
         self.medium = medium
         organizer = DataOrganizer(medium: medium)
         super.init()
@@ -52,7 +52,7 @@ extension MediumTableViewDataSource {
             return rows.count
         }
         
-        init(medium: Medium) {
+        init(medium: Movie) {
             var rows: [MediumViewController.Row] = []
             rows.append(.summary)
             rows.append(.description)
@@ -67,7 +67,7 @@ extension MediumTableViewDataSource {
 
 // MARK: - MediumCell.ViewModel
 extension SummaryCell.ViewModel {
-    init(media: Medium) {
+    init(media: Movie) {
         artwork = media.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
         name = media.trackName ?? "No track name"
         genre = media.primaryGenre
@@ -77,18 +77,18 @@ extension SummaryCell.ViewModel {
 
 //MARK: - MediumConfigurable
 protocol MediumConfigurable {
-    func configure(with medium: Medium)
+    func configure(with medium: Movie)
 }
 
 
 extension SummaryCell: MediumConfigurable {
-    func configure(with medium: Medium) {
+    func configure(with medium: Movie) {
         viewModel = ViewModel(media: medium)
     }
 }
 
 extension DescriptionCell: MediumConfigurable {
-    func configure(with medium: Medium) {
+    func configure(with medium: Movie) {
         longDescription = medium.longDescription ?? "No information available."
     }
 }

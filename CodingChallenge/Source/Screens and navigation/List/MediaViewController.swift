@@ -12,7 +12,7 @@ class MediaViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     var networkController: NetworkController? = NetworkController()
     private var dataSource: MediaTableViewDataSource?
-    var media: [Medium] = []
+    var media: [Movie] = []
     var lastVisitDate: Date? {
         didSet {
             if let dateText = lastVisitDate?.dateText {
@@ -58,7 +58,7 @@ extension MediaViewController {
         self.lastVisitDate = lastVisitDate
         
         guard let data = coder.decodeObject(forKey: CodingKey.media) as? Data,
-            let media = try? JSONDecoder().decode([Medium].self, from: data) else {
+            let media = try? JSONDecoder().decode([Movie].self, from: data) else {
             return
         }
         self.media = media
@@ -72,7 +72,7 @@ extension MediaViewController {
         setUpDataSource(with: media)
     }
     
-    func setUpDataSource(with media: [Medium]) {
+    func setUpDataSource(with media: [Movie]) {
         self.media = media
         let dataSource = MediaTableViewDataSource(media: media)
         self.dataSource = dataSource

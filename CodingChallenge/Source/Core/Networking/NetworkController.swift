@@ -14,18 +14,8 @@ protocol Networked: class {
 }
 
 class NetworkController {
-    private let cachingController: CachingController
     private var session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
     private var requests: [URL: AnyObject] = [:]
-    
-    init(cachingController: CachingController) {
-        self.cachingController = cachingController
-    }
-    
-    func fetchValue<V: Decodable>(for url: URL) -> V? {
-        let cachedValue: CachedValue<V>? = cachingController.fetchValue(for: url)
-        return cachedValue?.value
-    }
     
     func fetchImage(for url: URL, withCompletion completion: @escaping (Result<UIImage>) -> Void) {
         let imageRequest = ImageRequest(url: url, session: session)

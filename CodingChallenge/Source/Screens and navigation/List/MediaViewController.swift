@@ -10,7 +10,7 @@ import UIKit
 
 class MediaViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
-    var networkController: NetworkController? = NetworkController(cachingController: CachingController())
+    var networkController: NetworkController? = NetworkController()
     private var dataSource: MediaTableViewDataSource?
     var media: [Medium] = []
     var lastVisitDate: Date? {

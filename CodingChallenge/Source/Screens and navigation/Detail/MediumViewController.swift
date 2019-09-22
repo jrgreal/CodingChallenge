@@ -11,7 +11,7 @@ import UIKit
 class MediumViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var dataSource: MediumTableViewDataSource?
-    var networkController: NetworkController? = NetworkController(cachingController: CachingController())
+    var networkController: NetworkController? = NetworkController()
     
     var medium: Medium?
 }

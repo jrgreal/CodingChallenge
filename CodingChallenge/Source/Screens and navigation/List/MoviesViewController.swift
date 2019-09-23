@@ -10,7 +10,7 @@ import UIKit
 
 class MoviesViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
-    var networkController: NetworkController? = NetworkController()
+    var networkController: NetworkController? = AFNetworkController()
     private var dataSource: MoviesTableViewDataSource?
     var movies: [Movie] = []
     var lastVisitDate: Date? {
@@ -26,7 +26,7 @@ extension MoviesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
-        networkController?.fetchValue(for: APIEndpoint.searchTrackURL) { [weak self] (result: Result<SearchResult>) in
+        networkController?.fetchValue(for: APIEndpoint.searchMoviesURL) { [weak self] (result: Result<SearchResult>) in
             guard let movies = try? result.get().results else {
                 return
             }

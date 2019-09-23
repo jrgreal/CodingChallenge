@@ -11,7 +11,7 @@ import UIKit
 class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     private var dataSource: MovieDetailsTableViewDataSource?
-    var networkController: NetworkController? = NetworkController()
+    var networkController: NetworkController? = AFNetworkController()
     
     var movie: Movie?
 }

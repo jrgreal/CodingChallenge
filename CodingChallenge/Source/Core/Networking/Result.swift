@@ -12,11 +12,6 @@ enum Result<Wrapped> {
     case failure(Error)
     case success(Wrapped)
     
-    init(closure: () throws -> Wrapped) {
-        do { self = .success(try closure()) }
-        catch { self = .failure(error) }
-    }
-    
     func get() throws -> Wrapped {
         switch self {
         case let .success(value): return value

@@ -6,32 +6,42 @@
 //  Copyright © 2019 Reginald. All rights reserved.
 //
 
-import Foundation
 import UIKit
+import Alamofire
 
-protocol Networked: class {
-    var networkController: NetworkController? { get set }
+protocol NetworkController {
+    func fetchImage(for url: URL, withCompletion completion: @escaping (Result<UIImage>) -> Void)
+    func fetchValue<V: Decodable>(for url: URL, withCompletion completion: @escaping (Result<V>) -> Void)
 }
 
-class NetworkController {
-    private var session = URLSession(configuration: .default, delegate: nil, delegateQueue: .main)
-    private var requests: [URL: AnyObject] = [:]
-    
+class AFNetworkController: NetworkController {
     func fetchImage(for url: URL, withCompletion completion: @escaping (Result<UIImage>) -> Void) {
-        let imageRequest = ImageRequest(url: url, session: session)
-        requests[url] = imageRequest
-        imageRequest.execute { [weak self] (result) in
-            self?.requests[url] = nil
-            completion(result)
+        AF.request(url).responseData { (response) in
+            switch response.result {
+            case .success(let data):
+                guard let image = UIImage(data: data) else {
+                    completion(.failure(DataError.cannotConvertToImage))
+                    return
+                }
+                completion(.success(image))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
     
     func fetchValue<V: Decodable>(for url: URL, withCompletion completion: @escaping (Result<V>) -> Void) {
-        let apiRequest = FetchRequest<V>(url: url, session: session)
-        requests[url] = apiRequest
-        apiRequest.execute { [weak self] (result) in
-            completion(result)
-            self?.requests[url] = nil
+        AF.request(url).responseDecodable { (response: DataResponse<V, AFError>) in
+            switch response.result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
+}
+
+enum DataError: Error {
+    case cannotConvertToImage
 }

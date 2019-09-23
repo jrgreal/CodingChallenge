@@ -68,7 +68,10 @@ extension MovieCell.ViewModel {
     init(movie: Movie) {
         artwork = movie.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
         name = movie.trackName
-        genre = movie.primaryGenre
-        price = "\(movie.trackPrice ?? 0) \(movie.currency)"
+        genre = movie.primaryGenre        
+        sdBuyPrice =  movie.trackPrice.map({"BUY \($0) \(movie.currency)"}) ?? ""
+        sdRentPrice = movie.trackRentalPrice.map({"RENT \($0) \(movie.currency)"}) ?? ""
+        hdBuyPrice = movie.trackHDPrice.map({"BUY \($0) \(movie.currency)"}) ?? ""
+        hdRentPrice = movie.trackHDRentalPrice.map({"RENT \($0) \(movie.currency)"}) ?? ""
     }
 }

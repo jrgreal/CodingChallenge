@@ -8,11 +8,22 @@
 
 import UIKit
 
+class SummaryCell: MovieCell {}
+
+
+    /*
 class SummaryCell: UITableViewCell {
     @IBOutlet private weak var artworkImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var genreLabel: UILabel!
     @IBOutlet private weak var priceLabel: UILabel!
+    
+    @IBOutlet private weak var sdPriceView: UIView!
+    @IBOutlet private weak var sdBuyPriceLabel: UILabel!
+    @IBOutlet private weak var sdRentPriceLabel: UILabel!
+    @IBOutlet private weak var hdPriceView: UIView!
+    @IBOutlet private weak var hdBuyPriceLabel: UILabel!
+    @IBOutlet private weak var hdRentPriceLabel: UILabel!
     
     var viewModel = ViewModel() {
         didSet {
@@ -39,3 +50,5 @@ extension SummaryCell {
         var price = ""
     }
 }
+
+ */

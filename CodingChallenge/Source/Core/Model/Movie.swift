@@ -13,6 +13,9 @@ struct Movie {
     let trackId: Int
     let trackName: String
     let trackPrice: Double?
+    let trackRentalPrice: Double?
+    let trackHDPrice: Double?
+    let trackHDRentalPrice: Double?
     let currency: String
     let primaryGenre: String
     let longDescription: String
@@ -20,11 +23,29 @@ struct Movie {
     var artwork100: FetchableValue<UIImage>
 }
 
+//extension Movie {
+//    enum Resolution {
+//        case sd(buy: Double?, rent: Double?)
+//        case hd(buy: Double?, rent: Double?)
+//    }
+//    
+//    var pricesSD: [Double] {
+//        return []
+//    }
+//    
+//    var resolutions: [Resolution] {
+//        return []
+//    }
+//}
+
 extension Movie: Codable {
     enum CodingKeys: String, CodingKey {
         case trackId
         case trackName
         case trackPrice
+        case trackRentalPrice
+        case trackHDPrice = "trackHdPrice"
+        case trackHDRentalPrice = "trackHdRentalPrice"
         case currency
         case primaryGenre = "primaryGenreName"
         case longDescription

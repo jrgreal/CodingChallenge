@@ -12,14 +12,30 @@ class MovieCell: UITableViewCell {
     @IBOutlet private weak var artworkImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var genreLabel: UILabel!
-    @IBOutlet private weak var priceLabel: UILabel!
+    @IBOutlet private weak var sdPriceView: UIView!
+    @IBOutlet private weak var sdBuyPriceLabel: UILabel!
+    @IBOutlet private weak var sdRentPriceLabel: UILabel!
+    @IBOutlet private weak var hdPriceView: UIView!
+    @IBOutlet private weak var hdBuyPriceLabel: UILabel!
+    @IBOutlet private weak var hdRentPriceLabel: UILabel!
     
     var viewModel = ViewModel() {
         didSet {
             artworkImageView.image = viewModel.artwork
             nameLabel.text = viewModel.name
             genreLabel.text = viewModel.genre
-            priceLabel.text = viewModel.price
+            
+            let sdBuyPrice = viewModel.sdBuyPrice
+            let sdRentPrice = viewModel.sdRentPrice
+            sdBuyPriceLabel.text = sdBuyPrice
+            sdRentPriceLabel.text = sdRentPrice
+            sdPriceView.isHidden = sdBuyPrice.isEmpty && sdRentPrice.isEmpty
+            
+            let hdBuyPrice = viewModel.hdBuyPrice
+            let hdRentPrice = viewModel.hdRentPrice
+            hdBuyPriceLabel.text = hdBuyPrice
+            hdRentPriceLabel.text = hdRentPrice
+            hdPriceView.isHidden = hdBuyPrice.isEmpty && hdRentPrice.isEmpty
         }
     }
 }
@@ -36,6 +52,9 @@ extension MovieCell {
         var artwork = UIImage()
         var name = ""
         var genre = ""
-        var price = ""
+        var sdBuyPrice = ""
+        var sdRentPrice = ""
+        var hdBuyPrice = ""
+        var hdRentPrice = ""
     }
 }

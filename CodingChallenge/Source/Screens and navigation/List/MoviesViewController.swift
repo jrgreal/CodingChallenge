@@ -65,17 +65,9 @@ extension MoviesViewController {
     }
     
     override func applicationFinishedRestoringState() {
-       if !movies.isEmpty {
+        if !movies.isEmpty {
              setUpDataSource(with: movies)
         }
-    }
-    
-    func setUpDataSource(with movies: [Movie]) {
-        self.movies = movies
-        let dataSource = MoviesTableViewDataSource(movies: movies)
-        self.dataSource = dataSource
-        tableView.dataSource = dataSource
-        self.tableView.reloadData()
     }
 }
 
@@ -86,6 +78,14 @@ extension MoviesViewController: UITableViewDelegate {
 }
 
 extension MoviesViewController {
+    func setUpDataSource(with movies: [Movie]) {
+        self.movies = movies
+        let dataSource = MoviesTableViewDataSource(movies: movies)
+        self.dataSource = dataSource
+        tableView.dataSource = dataSource
+        self.tableView.reloadData()
+    }
+    
     func fetchImageForRow(at indexPath: IndexPath) {
         guard let fetchableImage = dataSource?.fetchableImage(at: indexPath) else {
             return

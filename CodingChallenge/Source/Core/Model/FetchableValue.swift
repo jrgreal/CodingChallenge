@@ -1,23 +1,12 @@
 //
-//  ModelTypes.swift
+//  FetchableValue.swift
 //  CodingChallenge
 //
-//  Created by Reginald on 12/09/2019.
+//  Created by Reginald on 23/09/2019.
 //  Copyright © 2019 Reginald. All rights reserved.
 //
 
 import Foundation
-
-struct ID<T>: Equatable {
-    let value: Int
-}
-
-extension ID: Decodable {
-    init(from decoder: Decoder) throws {
-        let value = try decoder.singleValueContainer().decode(Int.self)
-        self.init(value: value)
-    }
-}
 
 struct FetchableValue<T> {
     let url: URL
@@ -42,8 +31,8 @@ struct FetchableValue<T> {
 
 extension FetchableValue: Codable {
     init(from decoder: Decoder) throws {
-        let template = try decoder.singleValueContainer().decode(String.self)
-        guard let url = URL(template: template) else {
+        let urlString = try decoder.singleValueContainer().decode(String.self)
+        guard let url = URL(string: urlString) else {
             throw DecodingError.dataCorrupted(DecodingError.Context(codingPath: [], debugDescription: ""))
         }
         self.url = url

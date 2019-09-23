@@ -8,9 +8,10 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController {
+class MoviesViewController: UIViewController, Networked, Coordinated {
     @IBOutlet private weak var tableView: UITableView!
-    var networkController: NetworkController? = AFNetworkController()
+    var networkController: NetworkController?
+    var coordinator: Coordinator?
     private var dataSource: MoviesTableViewDataSource?
     var movies: [Movie] = []
     var lastVisitDate: Date? {
@@ -35,11 +36,10 @@ extension MoviesViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? MovieDetailsViewController {
-            if let indexPath = tableView.indexPathForSelectedRow,
-                let item = dataSource?.item(at: indexPath) {
-                destination.movie = item
-            }
+        coordinator?.configure(viewController: segue.destination)
+        if let indexPath = tableView.indexPathForSelectedRow,
+            let movie = dataSource?.item(at: indexPath) {
+            coordinator?.forward(value: movie, to: segue.destination)
         }
     }
     

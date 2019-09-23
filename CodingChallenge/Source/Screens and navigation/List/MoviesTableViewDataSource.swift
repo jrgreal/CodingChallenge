@@ -24,10 +24,6 @@ class MoviesTableViewDataSource: NSObject {
         return dataOrganizer[indexPath].artwork100
     }
     
-    func update(_ item: Movie, at indexPath: IndexPath) {
-        dataOrganizer[indexPath] = item
-    }
-    
     func update(_ image: UIImage, at indexPath: IndexPath) {
         dataOrganizer[indexPath].artwork100.update(newValue: image)
     }

@@ -23,21 +23,6 @@ struct Movie {
     var artwork100: FetchableValue<UIImage>
 }
 
-//extension Movie {
-//    enum Resolution {
-//        case sd(buy: Double?, rent: Double?)
-//        case hd(buy: Double?, rent: Double?)
-//    }
-//    
-//    var pricesSD: [Double] {
-//        return []
-//    }
-//    
-//    var resolutions: [Resolution] {
-//        return []
-//    }
-//}
-
 extension Movie: Codable {
     enum CodingKeys: String, CodingKey {
         case trackId

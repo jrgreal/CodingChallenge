@@ -13,7 +13,11 @@ class MoviesViewController: UIViewController, Networked, Coordinated {
     var networkController: NetworkController?
     var coordinator: Coordinator?
     private var dataSource: MoviesTableViewDataSource?
-    var movies: [Movie] = []
+    var movies: [Movie] = [] {
+        didSet {
+            setUpDataSource()
+        }
+    }
     var lastVisitDate: Date? {
         didSet {
             if let dateText = lastVisitDate?.dateText {
@@ -27,12 +31,7 @@ extension MoviesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
-        networkController?.fetchValue(for: APIEndpoint.searchMoviesURL) { [weak self] (result: Result<SearchResult>) in
-            guard let movies = try? result.get().results else {
-                return
-            }
-            self?.setUpDataSource(with: movies)
-        }
+        setUpDataSource()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,9 +64,7 @@ extension MoviesViewController {
     }
     
     override func applicationFinishedRestoringState() {
-        if !movies.isEmpty {
-             setUpDataSource(with: movies)
-        }
+        setUpDataSource()
     }
 }
 
@@ -78,8 +75,7 @@ extension MoviesViewController: UITableViewDelegate {
 }
 
 extension MoviesViewController {
-    func setUpDataSource(with movies: [Movie]) {
-        self.movies = movies
+    func setUpDataSource() {
         let dataSource = MoviesTableViewDataSource(movies: movies)
         self.dataSource = dataSource
         tableView.dataSource = dataSource

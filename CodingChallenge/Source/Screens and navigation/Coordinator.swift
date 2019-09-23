@@ -28,8 +28,12 @@ class Coordinator: NSObject {
     }
     
     func forward<T>(value: T, to viewController: UIViewController) {
-        if let movie = value as? Movie {
+        switch value {
+        case let movies as [Movie]:
+            (viewController as? MoviesViewController)?.movies = movies
+        case let movie as Movie:
             (viewController as? MovieDetailsViewController)?.movie = movie
+        default: break
         }
     }
 }

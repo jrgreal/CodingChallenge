@@ -14,6 +14,16 @@ class MainNavigationController: UINavigationController, Networked, Coordinated {
 }
 
 extension MainNavigationController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        networkController?.fetchValue(for: APIEndpoint.searchMoviesURL) { [weak self] (result: Result<SearchResult>) in
+            guard let movies = try? result.get().results, let destinationController = self?.viewControllers.first else {
+                return
+            }
+            self?.coordinator?.forward(value: movies, to: destinationController)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         coordinator?.configure(viewController: segue.destination)
     }

@@ -8,10 +8,11 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, Networked, Coordinated {
+class MoviesViewController: UIViewController, Networked, Coordinated, Stateful {
     @IBOutlet private weak var tableView: UITableView!
     var networkController: NetworkController?
     var coordinator: Coordinator?
+    var stateController: StateController?
     private var dataSource: MoviesTableViewDataSource?
     var movies: [Movie] = [] {
         didSet {
@@ -31,6 +32,8 @@ extension MoviesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
+        lastVisitDate = stateController?.lastVisitDate
+        stateController?.setLastVisitDate()
         setUpDataSource()
     }
     
@@ -44,23 +47,12 @@ extension MoviesViewController {
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
-        coder.encode(Date(), forKey: CodingKey.lastVisitDate)
-        guard let data = try? JSONEncoder().encode(movies) else {
-            return
-        }
-        coder.encode(data, forKey: CodingKey.movies)
+        stateController?.encode(movies, forKey: CodingKey.movies, withCoder: coder)
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
-        let lastVisitDate = coder.decodeObject(forKey: CodingKey.lastVisitDate) as? Date
-        self.lastVisitDate = lastVisitDate
-        
-        guard let data = coder.decodeObject(forKey: CodingKey.movies) as? Data,
-            let movies = try? JSONDecoder().decode([Movie].self, from: data) else {
-            return
-        }
-        self.movies = movies
+        movies = stateController?.decode(forKey: CodingKey.movies, withCoder: coder) ?? []
     }
     
     override func applicationFinishedRestoringState() {

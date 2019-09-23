@@ -17,9 +17,14 @@ protocol Networked: class {
     var networkController: NetworkController? { get set }
 }
 
+protocol Stateful: class {
+    var stateController: StateController? { get set }
+}
+
 class Coordinator: NSObject {
     let networkController = AFNetworkController()
-    var mainNavigationController: MainNavigationController
+    let stateController = StateController()
+    let mainNavigationController: MainNavigationController
     
     init(mainViewController: MainNavigationController) {
         self.mainNavigationController = mainViewController
@@ -42,6 +47,7 @@ extension Coordinator {
     func configure(viewController: UIViewController) {
         (viewController as? Coordinated)?.coordinator = self
         (viewController as? Networked)?.networkController = networkController
+        (viewController as? Stateful)?.stateController = stateController
         if let navigationController = viewController as? UINavigationController,
             let rootViewController = navigationController.viewControllers.first {
             configure(viewController: rootViewController)

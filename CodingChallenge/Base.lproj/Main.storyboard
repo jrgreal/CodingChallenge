@@ -11,7 +11,7 @@
         <!--Main Navigation Controller-->
         <scene sceneID="2yX-Bh-Auf">
             <objects>
-                <navigationController storyboardIdentifier="NavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Fi-HZ-iSC" customClass="MainNavigationController" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNavigationController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="9Fi-HZ-iSC" customClass="MainNavigationController" customModule="CodingChallenge" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tfd-J3-xgP">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

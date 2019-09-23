@@ -16,9 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        if let initialViewController = window?.rootViewController as? MainNavigationController {
-            coordinator = Coordinator(mainViewController: initialViewController)
-        }
+        setCoodinator()
         return true
     }
 
@@ -49,7 +47,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, shouldRestoreApplicationState coder: NSCoder) -> Bool {
+        setCoodinator()
         return true
+    }
+    
+    private func setCoodinator() {
+        if let initialViewController = window?.rootViewController as? MainNavigationController {
+            coordinator = Coordinator(mainViewController: initialViewController)
+        }
     }
 }
 

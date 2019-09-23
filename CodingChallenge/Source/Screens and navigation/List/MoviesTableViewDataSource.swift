@@ -39,7 +39,6 @@ extension MoviesTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MovieCell = tableView.dequeueReusableCell(for: indexPath)
         cell.viewModel = MovieCell.ViewModel(movie: dataOrganizer[indexPath])
-        print(cell.viewModel.artwork.size)
         return cell
     }
 }

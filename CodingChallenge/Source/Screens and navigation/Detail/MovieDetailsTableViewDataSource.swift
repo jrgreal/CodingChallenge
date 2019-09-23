@@ -65,16 +65,6 @@ extension MovieDetailsTableViewDataSource {
     }
 }
 
-//// MARK: - MovieCell.ViewModel
-//extension SummaryCell.ViewModel {
-//    init(movie: Movie) {
-//        artwork = movie.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
-//        name = movie.trackName
-//        genre = movie.primaryGenre
-//        price = "\(movie.trackPrice ?? 0) \(movie.currency)"
-//    }
-//}
-
 //MARK: - MovieConfigurable
 protocol MovieConfigurable {
     func configure(with movie: Movie)

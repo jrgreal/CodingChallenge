@@ -40,9 +40,11 @@ class MovieCell: UITableViewCell {
     }
 }
 
-extension MovieCell: ImagedCell {
-    override var imageView: UIImageView {
-        return artworkImageView
+extension MovieCell {
+    func update(_ image: UIImage) {
+        UIView.transition(with: artworkImageView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+            self.artworkImageView.image = image
+        }, completion: nil)
     }
 }
 

@@ -19,7 +19,6 @@ class MovieDetailsViewController: UIViewController {
 extension MovieDetailsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.delegate = self
         guard let movie = movie else {
             return
         }
@@ -57,17 +56,12 @@ extension MovieDetailsViewController {
         dataSource = MovieDetailsTableViewDataSource(movie: movie)
         tableView.dataSource = dataSource
         tableView.reloadData()
-    }
-}
-
-extension MovieDetailsViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        fetchImageForRow(at: indexPath)
+        fetchImage()
     }
 }
 
 extension MovieDetailsViewController {
-    func fetchImageForRow(at indexPath: IndexPath) {
+    func fetchImage() {
         guard let fetchableImage = dataSource?.fetchableImage() else {
             return
         }

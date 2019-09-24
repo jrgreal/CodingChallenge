@@ -151,7 +151,10 @@
 			isa = PBXGroup;
 			children = (
 				871E93662329C0460064B88E /* AppDelegate.swift */,
-				87498AB32329C089008633E0 /* Source */,
+				875AEC00233A3E1100E36B72 /* Log.swift */,
+				87498AB42329C08E008633E0 /* Core */,
+				872A1C4B232A881100ADAA9B /* Screens and navigation */,
+				879073D4232BC16400D7AD1D /* Extensions */,
 				871E936A2329C0460064B88E /* Main.storyboard */,
 				871E936D2329C04D0064B88E /* Assets.xcassets */,
 				871E936F2329C04D0064B88E /* LaunchScreen.storyboard */,
@@ -197,17 +200,6 @@
 				877D08532334C39100A3E2DD /* Detail */,
 			);
 			path = "Screens and navigation";
-			sourceTree = "<group>";
-		};
-		87498AB32329C089008633E0 /* Source */ = {
-			isa = PBXGroup;
-			children = (
-				87498AB42329C08E008633E0 /* Core */,
-				872A1C4B232A881100ADAA9B /* Screens and navigation */,
-				879073D4232BC16400D7AD1D /* Extensions */,
-				875AEC00233A3E1100E36B72 /* Log.swift */,
-			);
-			path = Source;
 			sourceTree = "<group>";
 		};
 		87498AB42329C08E008633E0 /* Core */ = {

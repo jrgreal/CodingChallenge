@@ -33,7 +33,6 @@ extension MoviesViewController {
         super.viewDidLoad()
         self.tableView.delegate = self
         lastVisitDate = stateController?.lastVisitDate
-        stateController?.setLastVisitDate()
         setUpDataSource()
     }
     

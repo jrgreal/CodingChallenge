@@ -12,13 +12,10 @@ class StateController {
     private let lastVisitDateKey = "lastVisitDate"
     
     var lastVisitDate: Date? {
-        return UserDefaults.standard.object(forKey: lastVisitDateKey) as? Date
-    }
-    
-    func setLastVisitDate() {
+        let date = UserDefaults.standard.object(forKey: lastVisitDateKey) as? Date
         UserDefaults.standard.set(Date(), forKey: lastVisitDateKey)
+        return date
     }
-    
     
     func encode<T: Encodable>(_ object: T, forKey key: String, withCoder coder: NSCoder) {
         guard let data = try? JSONEncoder().encode(object) else {

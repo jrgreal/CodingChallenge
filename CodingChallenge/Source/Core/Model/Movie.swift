@@ -19,8 +19,7 @@ struct Movie {
     let currency: String
     let primaryGenre: String
     let longDescription: String
-    var artwork60: FetchableValue<UIImage>
-    var artwork100: FetchableValue<UIImage>
+    var artwork: FetchableValue<UIImage>
 }
 
 extension Movie: Codable {
@@ -34,7 +33,6 @@ extension Movie: Codable {
         case currency
         case primaryGenre = "primaryGenreName"
         case longDescription
-        case artwork60 = "artworkUrl60"
-        case artwork100 = "artworkUrl100"
+        case artwork = "artworkUrl100"
     }
 }

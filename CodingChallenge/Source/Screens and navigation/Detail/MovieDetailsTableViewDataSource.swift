@@ -19,11 +19,11 @@ class MovieDetailsTableViewDataSource: NSObject {
     }
     
     func fetchableImage() -> FetchableValue<UIImage> {
-        return movie.artwork100
+        return movie.artwork
     }
     
     func update(_ image: UIImage) {
-        movie.artwork100.update(newValue: image)
+        movie.artwork.update(newValue: image)
     }
 }
 

@@ -22,11 +22,11 @@ class MoviesTableViewDataSource: NSObject {
     }
     
     func fetchableImage(at indexPath: IndexPath) -> FetchableValue<UIImage> {
-        return dataOrganizer[indexPath].artwork100
+        return dataOrganizer[indexPath].artwork
     }
     
     func update(_ image: UIImage, at indexPath: IndexPath) {
-        dataOrganizer[indexPath].artwork100.update(newValue: image)
+        dataOrganizer[indexPath].artwork.update(newValue: image)
     }
 }
 
@@ -62,7 +62,7 @@ extension MoviesTableViewDataSource {
 // MARK: - MovieCell.ViewModel
 extension MovieCell.ViewModel {
     init(movie: Movie) {
-        artwork = movie.artwork100.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
+        artwork = movie.artwork.fetchedValue ??  #imageLiteral(resourceName: "placeholder")
         name = movie.trackName
         genre = movie.primaryGenre        
         sdBuyPrice =  movie.trackPrice.map({"BUY \($0) \(movie.currency)"}) ?? ""

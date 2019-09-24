@@ -8,11 +8,11 @@
 
 import UIKit
 
-class MovieDetailsViewController: UIViewController {
+class MovieDetailsViewController: UIViewController, Networked {
     @IBOutlet private weak var tableView: UITableView!
     private var dataSource: MovieDetailsTableViewDataSource?
-    var networkController: NetworkController? = AFNetworkController()
-    
+    var networkController: NetworkController?
+     
     var movie: Movie?
 }
 
@@ -23,25 +23,25 @@ extension MovieDetailsViewController {
             return
         }
         setUpDataSource(with: movie)
+        fetchImage()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        fetchImage()
     }
     
     override func encodeRestorableState(with coder: NSCoder) {
         super.encodeRestorableState(with: coder)
-        guard let movie = movie else {
-            return
-        }
-        if let data = try? JSONEncoder().encode(movie) {
-            coder.encode(data, forKey: CodingKey.movie)
-            return
+        if let movie = movie {
+            coder.encode(movie)
         }
     }
     
     override func decodeRestorableState(with coder: NSCoder) {
         super.decodeRestorableState(with: coder)
-        if let data = coder.decodeObject(forKey: CodingKey.movie) as? Data, let movie = try? JSONDecoder().decode(Movie.self, from: data) {
-            self.movie = movie
-            return
-        }
+        movie = coder.decode()
+        
     }
     
     override func applicationFinishedRestoringState() {
@@ -50,17 +50,16 @@ extension MovieDetailsViewController {
         }
         setUpDataSource(with: movie)
     }
-    
+}
+
+extension MovieDetailsViewController {
     func setUpDataSource(with movie: Movie) {
         self.movie = movie
         dataSource = MovieDetailsTableViewDataSource(movie: movie)
         tableView.dataSource = dataSource
         tableView.reloadData()
-        fetchImage()
     }
-}
-
-extension MovieDetailsViewController {
+    
     func fetchImage() {
         guard let fetchableImage = dataSource?.fetchableImage() else {
             return

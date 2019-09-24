@@ -8,11 +8,10 @@
 
 import UIKit
 
-class MoviesViewController: UIViewController, Networked, Coordinated, Stateful {
+class MoviesViewController: UIViewController, Networked, Coordinated {
     @IBOutlet private weak var tableView: UITableView!
     var networkController: NetworkController?
     var coordinator: Coordinator?
-    var stateController: StateController?
     private var dataSource: MoviesTableViewDataSource?
     var movies: [Movie] = [] {
         didSet {
@@ -32,8 +31,8 @@ extension MoviesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.delegate = self
-        lastVisitDate = stateController?.lastVisitDate
-        setUpDataSource()
+        lastVisitDate = Log.getLastVisitDate()
+        fetchMovies()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -42,20 +41,6 @@ extension MoviesViewController {
             let movie = dataSource?.item(at: indexPath) {
             coordinator?.forward(value: movie, to: segue.destination)
         }
-    }
-    
-    override func encodeRestorableState(with coder: NSCoder) {
-        super.encodeRestorableState(with: coder)
-        stateController?.encode(movies, forKey: CodingKey.movies, withCoder: coder)
-    }
-    
-    override func decodeRestorableState(with coder: NSCoder) {
-        super.decodeRestorableState(with: coder)
-        movies = stateController?.decode(forKey: CodingKey.movies, withCoder: coder) ?? []
-    }
-    
-    override func applicationFinishedRestoringState() {
-        setUpDataSource()
     }
 }
 
@@ -66,6 +51,15 @@ extension MoviesViewController: UITableViewDelegate {
 }
 
 extension MoviesViewController {
+    private func fetchMovies() {
+        networkController?.fetchValue(for: APIEndpoint.searchMoviesURL) { [weak self] (result: Result<SearchResult>) in
+            guard let movies = try? result.get().results else {
+                return
+            }
+            self?.movies = movies
+        }
+    }
+    
     func setUpDataSource() {
         let dataSource = MoviesTableViewDataSource(movies: movies)
         self.dataSource = dataSource

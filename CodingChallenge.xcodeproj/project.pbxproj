@@ -19,6 +19,8 @@
 		872A1C4D232A887800ADAA9B /* MovieCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C4C232A887800ADAA9B /* MovieCell.swift */; };
 		872A1C51232A8AE700ADAA9B /* MoviesTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872A1C50232A8AE700ADAA9B /* MoviesTableViewDataSource.swift */; };
 		8739F4C5232A429200546AF8 /* SearchResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8739F4C4232A429200546AF8 /* SearchResult.swift */; };
+		875AEBFF233A3B0800E36B72 /* NSCoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875AEBFE233A3B0800E36B72 /* NSCoder.swift */; };
+		875AEC01233A3E1100E36B72 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 875AEC00233A3E1100E36B72 /* Log.swift */; };
 		877D08572334D1A500A3E2DD /* MovieDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877D08562334D1A500A3E2DD /* MovieDetailsViewController.swift */; };
 		879073D6232BC17700D7AD1D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879073D5232BC17700D7AD1D /* UITableView.swift */; };
 		87997A2B2337440E0084A6A7 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87997A2A2337440E0084A6A7 /* Coordinator.swift */; };
@@ -28,7 +30,6 @@
 		87AB41F82338D64B00D620DB /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB41F72338D64B00D620DB /* APIEndpoint.swift */; };
 		87AB41FC2338E92100D620DB /* FetchableValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB41FB2338E92100D620DB /* FetchableValue.swift */; };
 		87AB41FE2338EE4A00D620DB /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB41FD2338EE4A00D620DB /* MainNavigationController.swift */; };
-		87AB4202233919EF00D620DB /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AB4201233919EE00D620DB /* StateController.swift */; };
 		87EEE95F23350CAC00573FB9 /* SummaryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EEE95E23350CAC00573FB9 /* SummaryCell.swift */; };
 		87EEE96123350D1900573FB9 /* DescriptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EEE96023350D1900573FB9 /* DescriptionCell.swift */; };
 		87EEE9632335132600573FB9 /* MovieDetailsTableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87EEE9622335132600573FB9 /* MovieDetailsTableViewDataSource.swift */; };
@@ -76,6 +77,8 @@
 		872A1C4E232A888B00ADAA9B /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		872A1C50232A8AE700ADAA9B /* MoviesTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTableViewDataSource.swift; sourceTree = "<group>"; };
 		8739F4C4232A429200546AF8 /* SearchResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResult.swift; sourceTree = "<group>"; };
+		875AEBFE233A3B0800E36B72 /* NSCoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSCoder.swift; sourceTree = "<group>"; };
+		875AEC00233A3E1100E36B72 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		877D08562334D1A500A3E2DD /* MovieDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsViewController.swift; sourceTree = "<group>"; };
 		879073D5232BC17700D7AD1D /* UITableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		87997A2A2337440E0084A6A7 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
@@ -84,7 +87,6 @@
 		87AB41F72338D64B00D620DB /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
 		87AB41FB2338E92100D620DB /* FetchableValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchableValue.swift; sourceTree = "<group>"; };
 		87AB41FD2338EE4A00D620DB /* MainNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
-		87AB4201233919EE00D620DB /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		87EEE95E23350CAC00573FB9 /* SummaryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryCell.swift; sourceTree = "<group>"; };
 		87EEE96023350D1900573FB9 /* DescriptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DescriptionCell.swift; sourceTree = "<group>"; };
 		87EEE9622335132600573FB9 /* MovieDetailsTableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsTableViewDataSource.swift; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 				87498AB42329C08E008633E0 /* Core */,
 				872A1C4B232A881100ADAA9B /* Screens and navigation */,
 				879073D4232BC16400D7AD1D /* Extensions */,
+				875AEC00233A3E1100E36B72 /* Log.swift */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -212,7 +215,6 @@
 			children = (
 				87498AB52329C0A1008633E0 /* Model */,
 				872A1C30232A451000ADAA9B /* Networking */,
-				87AB42002339191D00D620DB /* Persistence */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -253,16 +255,9 @@
 			children = (
 				879073D5232BC17700D7AD1D /* UITableView.swift */,
 				87997A7123379A5D0084A6A7 /* Date.swift */,
+				875AEBFE233A3B0800E36B72 /* NSCoder.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		87AB42002339191D00D620DB /* Persistence */ = {
-			isa = PBXGroup;
-			children = (
-				87AB4201233919EE00D620DB /* StateController.swift */,
-			);
-			path = Persistence;
 			sourceTree = "<group>";
 		};
 		89F21E22EFE84CE9DEDDE6C8 /* Frameworks */ = {
@@ -510,9 +505,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				87AB41FE2338EE4A00D620DB /* MainNavigationController.swift in Sources */,
+				875AEC01233A3E1100E36B72 /* Log.swift in Sources */,
 				87AB41EF2337CE1200D620DB /* Movie.swift in Sources */,
 				87AB41F82338D64B00D620DB /* APIEndpoint.swift in Sources */,
-				87AB4202233919EF00D620DB /* StateController.swift in Sources */,
+				875AEBFF233A3B0800E36B72 /* NSCoder.swift in Sources */,
 				87997A7223379A5D0084A6A7 /* Date.swift in Sources */,
 				87EEE9632335132600573FB9 /* MovieDetailsTableViewDataSource.swift in Sources */,
 				871E93672329C0460064B88E /* AppDelegate.swift in Sources */,

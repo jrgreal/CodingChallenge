@@ -17,13 +17,8 @@ protocol Networked: class {
     var networkController: NetworkController? { get set }
 }
 
-protocol Stateful: class {
-    var stateController: StateController? { get set }
-}
-
 class Coordinator: NSObject {
     let networkController = AFNetworkController()
-    let stateController = StateController()
     let mainNavigationController: MainNavigationController
     
     init(mainViewController: MainNavigationController) {
@@ -34,8 +29,6 @@ class Coordinator: NSObject {
     
     func forward<T>(value: T, to viewController: UIViewController) {
         switch value {
-        case let movies as [Movie]:
-            (viewController as? MoviesViewController)?.movies = movies
         case let movie as Movie:
             (viewController as? MovieDetailsViewController)?.movie = movie
         default: break
@@ -47,10 +40,8 @@ extension Coordinator {
     func configure(viewController: UIViewController) {
         (viewController as? Coordinated)?.coordinator = self
         (viewController as? Networked)?.networkController = networkController
-        (viewController as? Stateful)?.stateController = stateController
-        if let navigationController = viewController as? UINavigationController,
-            let rootViewController = navigationController.viewControllers.first {
-            configure(viewController: rootViewController)
+        if let navigationController = viewController as? UINavigationController {
+            navigationController.viewControllers.forEach { configure(viewController: $0) }
         }
     }
 }

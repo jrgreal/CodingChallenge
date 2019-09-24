@@ -27,6 +27,7 @@ class MoviesViewController: UIViewController, Networked, Coordinated {
     }
 }
 
+// MARK: - UIViewController
 extension MoviesViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,14 +45,16 @@ extension MoviesViewController {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MoviesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         fetchImageForRow(at: indexPath)
     }
 }
 
-extension MoviesViewController {
-    private func fetchMovies() {
+// MARK: - Private
+private extension MoviesViewController {
+    func fetchMovies() {
         networkController?.fetchValue(for: APIEndpoint.searchMoviesURL) { [weak self] (result: Result<SearchResult>) in
             guard let movies = try? result.get().results else {
                 return
@@ -86,12 +89,5 @@ extension MoviesViewController {
         if tableView.indexPathsForVisibleRows?.contains(indexPath) ?? false {
             (tableView.cellForRow(at: indexPath) as? MovieCell)?.update(image)
         }
-    }
-}
-
-extension MoviesViewController {
-    struct CodingKey {
-        static let movies = "movies"
-        static let lastVisitDate = "lastVisitDate"
     }
 }

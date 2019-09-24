@@ -41,6 +41,7 @@ class MovieCell: UITableViewCell {
 }
 
 extension MovieCell {
+    /// A method for updating the image of a MovieCell with a predefined transition
     func update(_ image: UIImage) {
         UIView.transition(with: artworkImageView, duration: 0.3, options: .transitionCrossDissolve, animations: {
             self.artworkImageView.image = image

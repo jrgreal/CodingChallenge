@@ -17,6 +17,7 @@ protocol Networked: class {
     var networkController: NetworkController? { get set }
 }
 
+/// A class for coordinating navigation and applying dependency injection
 class Coordinator: NSObject {
     let networkController = AFNetworkController()
     let mainNavigationController: MainNavigationController
@@ -37,6 +38,7 @@ class Coordinator: NSObject {
 }
 
 extension Coordinator {
+    /// Configure the view controller's dependencies using dependency injection
     func configure(viewController: UIViewController) {
         (viewController as? Coordinated)?.coordinator = self
         (viewController as? Networked)?.networkController = networkController

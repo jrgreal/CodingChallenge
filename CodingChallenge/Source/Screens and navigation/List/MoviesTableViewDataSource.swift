@@ -8,7 +8,7 @@
 
 import UIKit
 
-/// Table view data source for displaying a list of movies
+/// Data source for displaying a list of movies
 class MoviesTableViewDataSource: NSObject {
     var dataOrganizer: DataOrganizer
     

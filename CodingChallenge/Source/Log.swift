@@ -9,12 +9,16 @@
 import Foundation
 
 struct Log {
-    private static let lastVisitDateKey = "lastVisitDate"
-    
     static func setLastVisitDate() {
-        UserDefaults.standard.set(Date(), forKey: lastVisitDateKey)
+        UserDefaults.standard.set(Date(), forKey: Keys.lastVisitDateKey)
     }
     static func getLastVisitDate() -> Date? {
-        return UserDefaults.standard.object(forKey: lastVisitDateKey) as? Date
+        return UserDefaults.standard.object(forKey: Keys.lastVisitDateKey) as? Date
+    }
+}
+
+extension Log {
+    struct Keys {
+        static let lastVisitDateKey = "lastVisitDate"
     }
 }

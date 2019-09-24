@@ -9,6 +9,7 @@
 import Foundation
 
 extension Date {
+    /// A string representation of the date
     var dateText: String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium

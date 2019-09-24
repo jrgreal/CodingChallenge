@@ -8,13 +8,14 @@
 
 import UIKit
 
+/// Data source for displaying movie details
 class MovieDetailsTableViewDataSource: NSObject {
     private let organizer: DataOrganizer
     private var movie: Movie
     
     init(movie: Movie) {
         self.movie = movie
-        organizer = DataOrganizer(movie: movie)
+        organizer = DataOrganizer()
         super.init()
     }
     
@@ -27,6 +28,7 @@ class MovieDetailsTableViewDataSource: NSObject {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension MovieDetailsTableViewDataSource: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return organizer.rowsCount
@@ -45,6 +47,7 @@ extension MovieDetailsTableViewDataSource: UITableViewDataSource {
 
 // MARK: - DataOrganizer
 extension MovieDetailsTableViewDataSource {
+    /// An organizer which defines how rows are arranged
     struct DataOrganizer {
         private let rows: [MovieDetailsViewController.Row]
         
@@ -52,7 +55,7 @@ extension MovieDetailsTableViewDataSource {
             return rows.count
         }
         
-        init(movie: Movie) {
+        init() {
             var rows: [MovieDetailsViewController.Row] = []
             rows.append(.summary)
             rows.append(.description)

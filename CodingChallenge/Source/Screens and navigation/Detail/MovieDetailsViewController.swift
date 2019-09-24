@@ -16,6 +16,7 @@ class MovieDetailsViewController: UIViewController, Networked {
     var movie: Movie?
 }
 
+// MARK: - UIViewController
 extension MovieDetailsViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -52,7 +53,8 @@ extension MovieDetailsViewController {
     }
 }
 
-extension MovieDetailsViewController {
+// MARK: - Private
+private extension MovieDetailsViewController {
     func setUpDataSource(with movie: Movie) {
         self.movie = movie
         dataSource = MovieDetailsTableViewDataSource(movie: movie)
@@ -76,7 +78,9 @@ extension MovieDetailsViewController {
     }
 }
 
+// MARK: - Row
 extension MovieDetailsViewController {
+    /// An enum for all the possible types of UITableViewCell used by MovieDetailsViewController
     enum Row {
         case summary
         case description
@@ -88,10 +92,5 @@ extension MovieDetailsViewController {
             }
         }
     }
-}
-
-extension MovieDetailsViewController {
-    struct CodingKey {
-        static let movie = "movie"
-    }
+    
 }
